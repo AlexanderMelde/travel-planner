@@ -447,43 +447,54 @@ export class App {
   /**
    * Computes a viewport-aware CSS style object for the view popover card.
    * Tries to open to the right of the clicked card; falls back to left if needed.
+   * Vertically: opens downward when space allows, flips upward before ever scrolling.
    */
   getPopoverStyle(rect: {top: number; left: number; width: number; height: number} | null): { [key: string]: string } {
     const POPOVER_WIDTH = 420;
+    const MAX_H = 520;   // estimated max content height
     const MARGIN = 10;
     const vw = window.innerWidth;
     const vh = window.innerHeight;
 
     if (!rect) {
-      // Centred fallback if no anchor
       return { top: '50%', left: '50%', transform: 'translate(-50%, -50%)' };
     }
 
-    // Prefer opening to the right of the card
+    // ── Horizontal ──────────────────────────────────────────────────────────
     let left = rect.left + rect.width + MARGIN;
     if (left + POPOVER_WIDTH > vw - MARGIN) {
-      // Not enough room on the right → open to the left
       left = rect.left - POPOVER_WIDTH - MARGIN;
     }
-    // Clamp to screen edges
     left = Math.max(MARGIN, Math.min(left, vw - POPOVER_WIDTH - MARGIN));
 
-    // Vertically: align to card top, but clamp so it doesn't go off-screen
-    // Max height estimate ~ 520px
-    const MAX_H = 520;
-    let top = rect.top;
-    if (top + MAX_H > vh - MARGIN) {
-      top = vh - MAX_H - MARGIN;
-    }
-    top = Math.max(MARGIN, top);
+    // ── Vertical ─────────────────────────────────────────────────────────────
+    const cardBottom = rect.top + rect.height;
+    const spaceBelow = vh - rect.top - MARGIN;  // px available if opening downward from card top
+    const spaceAbove = cardBottom - MARGIN;     // px available if opening upward from card bottom
 
-    return {
-      top: `${top}px`,
-      left: `${left}px`,
-      width: '420px',
-      'max-height': `${vh - top - MARGIN}px`,
-      'overflow-y': 'auto',
-    };
+    const leftPx = `${left}px`;
+    const widthPx = '420px';
+
+    if (spaceBelow >= MAX_H) {
+      // ① Plenty of room below → open downward, bottom set by content
+      return { top: `${rect.top}px`, left: leftPx, width: widthPx, 'max-height': `${MAX_H}px`, 'overflow-y': 'hidden' };
+    }
+
+    if (spaceAbove >= MAX_H) {
+      // ② Not enough below but enough above → anchor bottom of popover to card bottom
+      // Using CSS `bottom` so the popover's bottom edge always hugs the card regardless of content height.
+      const cssBottom = vh - cardBottom;
+      return { bottom: `${cssBottom}px`, left: leftPx, width: widthPx, 'max-height': `${MAX_H}px`, 'overflow-y': 'hidden' };
+    }
+
+    if (spaceBelow >= spaceAbove) {
+      // ③ More room below than above, but neither fits MAX_H → downward with scroll
+      return { top: `${rect.top}px`, left: leftPx, width: widthPx, 'max-height': `${spaceBelow}px`, 'overflow-y': 'auto' };
+    }
+
+    // ④ More room above → upward with scroll
+    const cssBottom = vh - cardBottom;
+    return { bottom: `${cssBottom}px`, left: leftPx, width: widthPx, 'max-height': `${spaceAbove}px`, 'overflow-y': 'auto' };
   }
 
   openEditModal(activity?: Activity, dayIdx?: number, slot?: SlotType) {

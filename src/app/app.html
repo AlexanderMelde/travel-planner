@@ -3,93 +3,80 @@
   <!-- TOP APP HEADER -->
   <header class="bg-white border-b border-slate-200 shrink-0 z-30 shadow-xs">
     <div class="w-full px-3 sm:px-6 py-2 flex flex-wrap items-center justify-between gap-3">
-      
+
       <!-- Title & Branding -->
       <div class="flex items-center gap-2">
         @if (!isEditingTitle()) {
-          <div 
-            class="w-7 h-7 rounded-lg text-white flex items-center justify-center font-bold text-sm shadow-xs shrink-0"
-            [style.backgroundColor]="tripData().iconBgColor || '#4f46e5'">
-            {{ tripData().icon || '✈️' }}
-          </div>
-          <div class="flex items-center gap-1.5">
-            <h1 class="text-sm font-bold text-slate-900 tracking-tight leading-tight">
-              {{ tripData().title }}
-            </h1>
-            <button 
-              (click)="startEditingTitle()"
-              title="Titel bearbeiten"
-              class="p-1 text-slate-400 hover:text-indigo-600 hover:bg-slate-100 rounded transition-colors">
-              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
-              </svg>
-            </button>
-          </div>
+        <div class="w-7 h-7 rounded-lg text-white flex items-center justify-center font-bold text-sm shadow-xs shrink-0"
+          [style.backgroundColor]="tripData().iconBgColor || '#4f46e5'">
+          {{ tripData().icon || '✈️' }}
+        </div>
+        <div class="flex items-center gap-1.5">
+          <h1 class="text-sm font-bold text-slate-900 tracking-tight leading-tight">
+            {{ tripData().title }}
+          </h1>
+          <button (click)="startEditingTitle()" title="Titel bearbeiten"
+            class="p-1 text-slate-400 hover:text-indigo-600 hover:bg-slate-100 rounded transition-colors">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+            </svg>
+          </button>
+        </div>
         } @else {
-          <div class="flex items-center gap-2">
-            <!-- Icon Input (1-2 chars) -->
-            <input 
-              type="text" 
-              maxlength="2"
-              [ngModel]="iconInput()"
-              (ngModelChange)="iconInput.set($event)"
-              placeholder="✈️"
-              title="Emoji / Icon"
-              class="w-8 h-7 text-center font-bold text-sm bg-slate-100 border border-indigo-400 rounded outline-none shadow-2xs">
+        <div class="flex items-center gap-2">
+          <!-- Icon Input (1-2 chars) -->
+          <input type="text" maxlength="2" [ngModel]="iconInput()" (ngModelChange)="iconInput.set($event)"
+            placeholder="✈️" title="Emoji / Icon"
+            class="w-8 h-7 text-center font-bold text-sm bg-slate-100 border border-indigo-400 rounded outline-none shadow-2xs">
 
-            <!-- Circle Color Picker -->
-            <label 
-              class="w-7 h-7 rounded-full border-2 border-white shadow-2xs cursor-pointer overflow-hidden shrink-0 flex items-center justify-center relative hover:scale-105 transition-transform"
-              [style.backgroundColor]="iconBgColorInput()"
-              title="Hintergrundfarbe wählen">
-              <input 
-                type="color" 
-                [ngModel]="iconBgColorInput()"
-                (ngModelChange)="iconBgColorInput.set($event)"
-                class="opacity-0 w-full h-full cursor-pointer absolute inset-0">
-            </label>
+          <!-- Circle Color Picker -->
+          <label
+            class="w-7 h-7 rounded-full border-2 border-white shadow-2xs cursor-pointer overflow-hidden shrink-0 flex items-center justify-center relative hover:scale-105 transition-transform"
+            [style.backgroundColor]="iconBgColorInput()" title="Hintergrundfarbe wählen">
+            <input type="color" [ngModel]="iconBgColorInput()" (ngModelChange)="iconBgColorInput.set($event)"
+              class="opacity-0 w-full h-full cursor-pointer absolute inset-0">
+          </label>
 
-            <!-- Title Text Input -->
-            <input 
-              type="text" 
-              [ngModel]="titleInput()"
-              (ngModelChange)="titleInput.set($event)"
-              (keydown.enter)="saveTitle()"
-              (keydown.escape)="cancelEditingTitle()"
-              class="px-2 py-0.5 text-xs font-bold text-slate-900 bg-slate-100 border border-indigo-400 rounded outline-none focus:ring-2 focus:ring-indigo-500 min-w-[160px]">
-            
-            <button 
-              (click)="saveTitle()"
-              title="Titel & Icon speichern"
-              class="p-1 text-emerald-600 hover:text-emerald-700 hover:bg-emerald-50 rounded transition-colors font-bold">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-              </svg>
-            </button>
-          </div>
+          <!-- Title Text Input -->
+          <input type="text" [ngModel]="titleInput()" (ngModelChange)="titleInput.set($event)"
+            (keydown.enter)="saveTitle()" (keydown.escape)="cancelEditingTitle()"
+            class="px-2 py-0.5 text-xs font-bold text-slate-900 bg-slate-100 border border-indigo-400 rounded outline-none focus:ring-2 focus:ring-indigo-500 min-w-[160px]">
+
+          <button (click)="saveTitle()" title="Titel & Icon speichern"
+            class="p-1 text-emerald-600 hover:text-emerald-700 hover:bg-emerald-50 rounded transition-colors font-bold">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+          </button>
+        </div>
         }
       </div>
 
       <!-- Tab Navigation & Action Buttons -->
       <div class="flex items-center gap-2.5 flex-wrap">
-        
+
         <!-- Tab Switcher -->
         <div class="bg-slate-100 p-0.5 rounded-lg flex items-center border border-slate-200/80">
-          <button 
-            (click)="activeTab.set('plan')"
+          <button (click)="activeTab.set('plan')"
             [class]="activeTab() === 'plan' 
               ? 'bg-white text-indigo-700 font-semibold shadow-2xs rounded-md px-3 py-1 text-xs transition-all flex items-center gap-1.5' 
               : 'text-slate-600 hover:text-slate-900 font-medium px-3 py-1 text-xs transition-all flex items-center gap-1.5'">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
             Reiseplan
           </button>
 
-          <button 
-            (click)="activeTab.set('budget')"
+          <button (click)="activeTab.set('budget')"
             [class]="activeTab() === 'budget' 
               ? 'bg-white text-indigo-700 font-semibold shadow-2xs rounded-md px-3 py-1 text-xs transition-all flex items-center gap-1.5' 
               : 'text-slate-600 hover:text-slate-900 font-medium px-3 py-1 text-xs transition-all flex items-center gap-1.5'">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
             Kostenübersicht
           </button>
         </div>
@@ -99,43 +86,51 @@
         <!-- 3-Dots Dropdown Menu -->
         <div class="relative">
           <input type="file" #fileInput (change)="onFileSelected($event)" accept=".json" class="hidden">
-          
-          <button 
-            (click)="showMenu.set(!showMenu())"
-            title="Weitere Optionen"
+
+          <button (click)="showMenu.set(!showMenu())" title="Weitere Optionen"
             class="p-1.5 text-slate-600 hover:text-slate-900 bg-white hover:bg-slate-100 border border-slate-300 rounded-lg shadow-2xs transition-all flex items-center justify-center">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"/></svg>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
+            </svg>
           </button>
 
           @if (showMenu()) {
-            <!-- Backdrop -->
-            <div (click)="showMenu.set(false)" class="fixed inset-0 z-40"></div>
+          <!-- Backdrop -->
+          <div (click)="showMenu.set(false)" class="fixed inset-0 z-40"></div>
 
-            <!-- Dropdown Popup -->
-            <div class="absolute right-0 mt-1.5 w-48 bg-white rounded-xl shadow-lg border border-slate-200/90 py-1 z-50 animate-pop-in">
-              <button 
-                (click)="triggerImport(); showMenu.set(false)"
-                class="w-full px-3.5 py-2 text-left text-xs font-semibold text-slate-700 hover:bg-slate-50 flex items-center gap-2 transition-colors">
-                <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
-                Import JSON
-              </button>
+          <!-- Dropdown Popup -->
+          <div
+            class="absolute right-0 mt-1.5 w-48 bg-white rounded-xl shadow-lg border border-slate-200/90 py-1 z-50 animate-pop-in">
+            <button (click)="triggerImport(); showMenu.set(false)"
+              class="w-full px-3.5 py-2 text-left text-xs font-semibold text-slate-700 hover:bg-slate-50 flex items-center gap-2 transition-colors">
+              <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+              </svg>
+              Import JSON
+            </button>
 
-              <button 
-                (click)="exportJson(); showMenu.set(false)"
-                class="w-full px-3.5 py-2 text-left text-xs font-semibold text-slate-700 hover:bg-slate-50 flex items-center gap-2 transition-colors">
-                <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-                Export JSON
-              </button>
+            <button (click)="exportJson(); showMenu.set(false)"
+              class="w-full px-3.5 py-2 text-left text-xs font-semibold text-slate-700 hover:bg-slate-50 flex items-center gap-2 transition-colors">
+              <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+              </svg>
+              Export JSON
+            </button>
 
-              <div class="my-1 border-t border-slate-100"></div>
+            <div class="my-1 border-t border-slate-100"></div>
 
-              <button 
-                (click)="resetToDefault(); showMenu.set(false)"
-                class="w-full px-3.5 py-2 text-left text-xs font-semibold text-red-600 hover:bg-red-50 flex items-center gap-2 transition-colors">
-                <svg class="w-3.5 h-3.5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
-                Beispieldaten Reset
-              </button>
-            </div>
+            <button (click)="resetToDefault(); showMenu.set(false)"
+              class="w-full px-3.5 py-2 text-left text-xs font-semibold text-red-600 hover:bg-red-50 flex items-center gap-2 transition-colors">
+              <svg class="w-3.5 h-3.5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+              </svg>
+              Beispieldaten Reset
+            </button>
+          </div>
           }
         </div>
 
@@ -145,941 +140,854 @@
 
   <!-- MAIN CONTENT AREA -->
   <main class="flex-1 p-2 w-full flex flex-col min-h-0 overflow-y-auto">
-    
+
     <!-- TAB 1: REISEPLANER MATRIX GRID -->
     @if (activeTab() === 'plan') {
-      <div #gridScrollContainer class="overflow-x-auto horizontal-scroll-container pb-1 pt-0.5 w-full flex-1 flex flex-col min-h-0">
-        
-        <!-- 2D MATRIX GRID: Stretches vertically to 100% viewport height -->
-        <div class="grid grid-rows-[30px_repeat(4,minmax(min-content,1fr))] gap-1.5 w-full flex-1 h-full min-h-0 items-stretch"
-             [ngStyle]="{'grid-template-columns': '36px repeat(' + tripData().itinerary.length + ', minmax(145px, 1fr))'}">
-          
-          <!-- TOP LEFT CORNER HEADER -->
-          <div class="w-full h-full"></div>
+    <div #gridScrollContainer
+      class="overflow-x-auto horizontal-scroll-container pb-1 pt-0.5 w-full flex-1 flex flex-col min-h-0">
 
-          <!-- TOP ROW: DAY COLUMN HEADERS WITH DAY-LEVEL THREE-DOT MENU -->
-          @for (day of tripData().itinerary; track $index; let dayIdx = $index; let isLast = $last) {
-            @let info = formatDayHeaderParts(tripData().startDate, dayIdx, day.location);
-            <div [ngStyle]="getHeaderStyle(info.location)"
-                 class="px-2 py-1 rounded-xl shadow-2xs flex items-center justify-between group/day h-full min-w-0 transition-all border relative z-20"
-                 [class.z-50]="activeDayMenuIndex() === dayIdx"
-                 [title]="info.location ? info.location : ''">
-              <div class="flex items-center gap-1.5 min-w-0 z-10">
-                <span class="bg-slate-900/90 text-white font-extrabold text-[10.5px] px-1.5 py-0.5 rounded leading-none shrink-0 uppercase tracking-tight shadow-2xs">
-                  {{ info.weekday }}
-                </span>
-                <span class="font-extrabold text-slate-900 text-xs tracking-tight truncate leading-none">
-                  {{ info.date }}
-                </span>
-              </div>
+      <!-- 2D MATRIX GRID: Stretches vertically to 100% viewport height -->
+      <div
+        class="grid grid-rows-[30px_repeat(4,minmax(min-content,1fr))] gap-1.5 w-full flex-1 h-full min-h-0 items-stretch"
+        [ngStyle]="{'grid-template-columns': '36px repeat(' + tripData().itinerary.length + ', minmax(145px, 1fr))'}">
 
-              <div class="flex items-center gap-1 shrink-0 z-10">
-                <!-- Day Options Three-Dots Menu -->
-                <div class="relative flex items-center">
-                  <button 
-                    type="button"
-                    (click)="toggleDayMenu(dayIdx, $event)"
-                    title="Optionen für diesen Tag"
-                    class="p-0.5 text-slate-600 hover:text-indigo-600 hover:bg-white/70 rounded transition-colors flex items-center justify-center font-bold">
-                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"/>
+        <!-- TOP LEFT CORNER HEADER -->
+        <div class="w-full h-full"></div>
+
+        <!-- TOP ROW: DAY COLUMN HEADERS WITH DAY-LEVEL THREE-DOT MENU -->
+        @for (day of tripData().itinerary; track $index; let dayIdx = $index; let isLast = $last) {
+        @let info = formatDayHeaderParts(tripData().startDate, dayIdx, day.location);
+        <div [ngStyle]="getHeaderStyle(info.location)"
+          class="px-2 py-1 rounded-xl shadow-2xs flex items-center justify-between group/day h-full min-w-0 transition-all border relative z-20"
+          [class.z-50]="activeDayMenuIndex() === dayIdx" [title]="info.location ? info.location : ''">
+          <div class="flex items-center gap-1.5 min-w-0 z-10">
+            <span
+              class="bg-slate-900/90 text-white font-extrabold text-[10.5px] px-1.5 py-0.5 rounded leading-none shrink-0 uppercase tracking-tight shadow-2xs">
+              {{ info.weekday }}
+            </span>
+            <span class="font-extrabold text-slate-900 text-xs tracking-tight truncate leading-none">
+              {{ info.date }}
+            </span>
+          </div>
+
+          <div class="flex items-center gap-1 shrink-0 z-10">
+            <!-- Day Options Three-Dots Menu -->
+            <div class="relative flex items-center">
+              <button type="button" (click)="toggleDayMenu(dayIdx, $event)" title="Optionen für diesen Tag"
+                class="p-0.5 text-slate-600 hover:text-indigo-600 hover:bg-white/70 rounded transition-colors flex items-center justify-center font-bold">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
+                </svg>
+              </button>
+
+              @if (activeDayMenuIndex() === dayIdx) {
+              <!-- Backdrop -->
+              <div (click)="$event.stopPropagation(); activeDayMenuIndex.set(null)" class="fixed inset-0 z-40"></div>
+
+              <!-- Dropdown Popup -->
+              <div
+                class="absolute right-0 top-full mt-1 w-48 bg-white rounded-xl shadow-lg border border-slate-200/90 py-1 z-50 animate-pop-in text-left">
+
+                <!-- Option: Edit Start Date (Day 1 only) -->
+                @if (dayIdx === 0) {
+                <button type="button" (click)="$event.stopPropagation(); openDatePicker(startDatePicker)"
+                  class="w-full px-3 py-1.5 text-xs text-slate-700 hover:bg-indigo-50 hover:text-indigo-600 font-medium flex items-center gap-2 transition-colors border-b border-slate-100">
+                  <svg class="w-3.5 h-3.5 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                  Startdatum ändern
+                </button>
+                <input type="date" #startDatePicker [value]="tripData().startDate" (change)="onStartDateChange($event)"
+                  class="sr-only opacity-0 w-0 h-0 absolute pointer-events-none" />
+                }
+
+                <!-- Option: Edit Location (All days) -->
+                <button (click)="openLocationModal(dayIdx)"
+                  class="w-full px-3 py-1.5 text-xs text-slate-700 hover:bg-indigo-50 hover:text-indigo-600 font-medium flex items-center gap-2 transition-colors">
+                  <svg class="w-3.5 h-3.5 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                  Ort wählen
+                </button>
+
+                <!-- Options: Add / Remove Day (Last day only) -->
+                @if (isLast) {
+                <div class="border-t border-slate-100 mt-0.5 pt-0.5">
+                  <button (click)="addDay()"
+                    class="w-full px-3 py-1.5 text-xs text-slate-700 hover:bg-indigo-50 hover:text-indigo-600 font-medium flex items-center gap-2 transition-colors">
+                    <svg class="w-3.5 h-3.5 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                     </svg>
+                    Tag hinzufügen
                   </button>
 
-                  @if (activeDayMenuIndex() === dayIdx) {
-                    <!-- Backdrop -->
-                    <div (click)="$event.stopPropagation(); activeDayMenuIndex.set(null)" class="fixed inset-0 z-40"></div>
-
-                    <!-- Dropdown Popup -->
-                    <div class="absolute right-0 top-full mt-1 w-48 bg-white rounded-xl shadow-lg border border-slate-200/90 py-1 z-50 animate-pop-in text-left">
-                      
-                      <!-- Option: Edit Start Date (Day 1 only) -->
-                      @if (dayIdx === 0) {
-                        <button 
-                          type="button"
-                          (click)="$event.stopPropagation(); openDatePicker(startDatePicker)"
-                          class="w-full px-3 py-1.5 text-xs text-slate-700 hover:bg-indigo-50 hover:text-indigo-600 font-medium flex items-center gap-2 transition-colors border-b border-slate-100">
-                          <svg class="w-3.5 h-3.5 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                          </svg>
-                          Startdatum ändern
-                        </button>
-                        <input 
-                          type="date" 
-                          #startDatePicker
-                          [value]="tripData().startDate" 
-                          (change)="onStartDateChange($event)" 
-                          class="sr-only opacity-0 w-0 h-0 absolute pointer-events-none"
-                        />
-                      }
-
-                      <!-- Option: Edit Location (All days) -->
-                      <button 
-                        (click)="openLocationModal(dayIdx)"
-                        class="w-full px-3 py-1.5 text-xs text-slate-700 hover:bg-indigo-50 hover:text-indigo-600 font-medium flex items-center gap-2 transition-colors">
-                        <svg class="w-3.5 h-3.5 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-                        </svg>
-                        Ort wählen
-                      </button>
-
-                      <!-- Options: Add / Remove Day (Last day only) -->
-                      @if (isLast) {
-                        <div class="border-t border-slate-100 mt-0.5 pt-0.5">
-                          <button 
-                            (click)="addDay()"
-                            class="w-full px-3 py-1.5 text-xs text-slate-700 hover:bg-indigo-50 hover:text-indigo-600 font-medium flex items-center gap-2 transition-colors">
-                            <svg class="w-3.5 h-3.5 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
-                            </svg>
-                            Tag hinzufügen
-                          </button>
-
-                          <button 
-                            (click)="removeLastDay()"
-                            class="w-full px-3 py-1.5 text-xs text-rose-600 hover:bg-rose-50 font-medium flex items-center gap-2 transition-colors">
-                            <svg class="w-3.5 h-3.5 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
-                            </svg>
-                            Tag entfernen
-                          </button>
-                        </div>
-                      }
-
-                    </div>
-                  }
+                  <button (click)="removeLastDay()"
+                    class="w-full px-3 py-1.5 text-xs text-rose-600 hover:bg-rose-50 font-medium flex items-center gap-2 transition-colors">
+                    <svg class="w-3.5 h-3.5 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                    </svg>
+                    Tag entfernen
+                  </button>
                 </div>
+                }
 
-                <button 
-                  (click)="openCreateModal(dayIdx, 'morning')"
-                  title="Neuen Programmpunkt an diesem Tag hinzufügen"
-                  class="w-4 h-4 rounded hover:bg-white/80 text-slate-700 hover:text-indigo-600 flex items-center justify-center font-bold text-xs transition-all shrink-0">
-                  +
-                </button>
               </div>
-            </div>
-          }
-
-          <!-- ROWS: TIME SLOTS -->
-          @for (currentSlot of slotKeys; track currentSlot) {
-            
-            <!-- LEFT ROW HEADER (Skinny Vertical Text Label) -->
-            <div class="bg-slate-200/60 border border-slate-200/80 rounded-xl flex items-center justify-center h-full w-full shrink-0 select-none py-2 shadow-2xs">
-              <span class="font-extrabold text-slate-600 text-[10.5px] uppercase tracking-widest [writing-mode:vertical-lr] rotate-180">
-                {{ getSlotLabel(currentSlot) }}
-              </span>
+              }
             </div>
 
-            <!-- 9 DAY CELLS FOR THIS TIME SLOT -->
-            @for (day of tripData().itinerary; track $index; let dayIdx = $index) {
-              @let activities = getSlotActivities(day, currentSlot);
-              @let isTarget = dragOverTarget() === dayIdx + '-' + currentSlot;
+            <button (click)="openCreateModal(dayIdx, 'morning')" title="Neuen Programmpunkt an diesem Tag hinzufügen"
+              class="w-4 h-4 rounded hover:bg-white/80 text-slate-700 hover:text-indigo-600 flex items-center justify-center font-bold text-xs transition-all shrink-0">
+              +
+            </button>
+          </div>
+        </div>
+        }
 
-              <!-- GRID CELL (DROP ZONE) -->
-              <div 
-                (dragover)="onDragOver($event, dayIdx, currentSlot)"
-                (dragleave)="onDragLeave($event, dayIdx, currentSlot)"
-                (drop)="onDrop($event, dayIdx, currentSlot)"
-                [class]="isTarget 
+        <!-- ROWS: TIME SLOTS -->
+        @for (currentSlot of slotKeys; track currentSlot) {
+
+        <!-- LEFT ROW HEADER (Skinny Vertical Text Label) -->
+        <div
+          class="bg-slate-200/60 border border-slate-200/80 rounded-xl flex items-center justify-center h-full w-full shrink-0 select-none py-2 shadow-2xs">
+          <span
+            class="font-extrabold text-slate-600 text-[10.5px] uppercase tracking-widest [writing-mode:vertical-lr] rotate-180">
+            {{ getSlotLabel(currentSlot) }}
+          </span>
+        </div>
+
+        <!-- 9 DAY CELLS FOR THIS TIME SLOT -->
+        @for (day of tripData().itinerary; track $index; let dayIdx = $index) {
+        @let activities = getSlotActivities(day, currentSlot);
+        @let isTarget = dragOverTarget() === dayIdx + '-' + currentSlot;
+
+        <!-- GRID CELL (DROP ZONE) -->
+        <div (dragover)="onDragOver($event, dayIdx, currentSlot)" (dragleave)="onDragLeave($event, dayIdx, currentSlot)"
+          (drop)="onDrop($event, dayIdx, currentSlot)"
+          [class]="isTarget 
                   ? 'bg-indigo-50/90 border-2 border-indigo-500 rounded-xl p-1.5 space-y-1.5 h-full flex flex-col justify-start transition-all' 
                   : 'bg-transparent border border-transparent hover:bg-slate-100/60 hover:border-slate-200/80 rounded-xl p-1.5 space-y-1.5 h-full flex flex-col justify-start transition-colors'">
-                
-                <!-- ACTIVITY CARDS IN CELL -->
-                <div class="space-y-1.5 w-full">
-                  @for (act of activities; track act.id || act.title; let idx = $index) {
-                    
-                    <!-- ACTIVITY CARD -->
-                    <div 
-                      draggable="true"
-                      (dragstart)="onDragStart($event, dayIdx, currentSlot, idx)"
-                      (click)="openViewModal(act, dayIdx, currentSlot, $event)"
-                      class="activity-card group bg-white rounded-lg border border-slate-200/90 shadow-2xs hover:shadow-md transition-all relative overflow-hidden flex flex-col justify-between p-2 cursor-pointer select-none">
-                      
-                      <!-- Right-aligned Background Image (if present) -->
-                      @if (act.images && act.images.length > 0) {
-                        <div 
-                          class="absolute right-0 top-0 bottom-0 w-3/5 bg-cover bg-center rounded-r-lg pointer-events-none card-image-fade"
-                          [style.backgroundImage]="'url(' + act.images[0] + ')'">
-                        </div>
-                        <!-- Fade gradient to card background -->
-                        <div class="absolute inset-0 card-bg-gradient rounded-lg pointer-events-none"></div>
-                      }
 
-                      <!-- Card Content Area -->
-                      <div class="relative z-10 flex-1 flex flex-col justify-between min-w-0">
-                        
-                        <!-- Header: Title & Delete X button -->
-                        <div class="flex items-start justify-between gap-1">
-                          <h3 class="font-bold text-slate-900 text-xs leading-snug tracking-tight group-hover:text-indigo-600 transition-colors">
-                            {{ act.title }}
-                          </h3>
-                          
-                          <!-- Delete X button -->
-                          <button 
-                            (click)="deleteActivity(act, dayIdx, currentSlot, $event)"
-                            title="Löschen"
-                            class="opacity-0 group-hover:opacity-100 p-0.5 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded transition-all shrink-0">
-                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-                          </button>
-                        </div>
+          <!-- ACTIVITY CARDS IN CELL -->
+          <div class="space-y-1.5 w-full">
+            @for (act of activities; track act.id || act.title; let idx = $index) {
 
-                        <!-- Subtitle / Short Description -->
-                        @if (act.subtitle) {
-                          <p class="text-[10.5px] text-slate-500 font-normal leading-tight line-clamp-2 mt-0.5">
-                            {{ act.subtitle }}
-                          </p>
-                        }
+            <!-- ACTIVITY CARD -->
+            <div draggable="true" (dragstart)="onDragStart($event, dayIdx, currentSlot, idx)"
+              (click)="openViewModal(act, dayIdx, currentSlot, $event)"
+              class="activity-card group bg-white rounded-lg border border-slate-200/90 shadow-2xs hover:shadow-md transition-all relative overflow-hidden flex flex-col justify-between p-2 cursor-pointer select-none">
 
-                      </div>
-                    </div>
+              <!-- Right-aligned Background Image (if present) -->
+              @if (act.images && act.images.length > 0) {
+              <div
+                class="absolute right-0 top-0 bottom-0 w-3/5 bg-cover bg-center rounded-r-lg pointer-events-none card-image-fade"
+                [style.backgroundImage]="'url(' + act.images[0] + ')'">
+              </div>
+              <!-- Fade gradient to card background -->
+              <div class="absolute inset-0 card-bg-gradient rounded-lg pointer-events-none"></div>
+              }
 
-                  }
+              <!-- Card Content Area -->
+              <div class="relative z-10 flex-1 flex flex-col justify-between min-w-0">
+
+                <!-- Header: Title & Delete X button -->
+                <div class="flex items-start justify-between gap-1">
+                  <h3
+                    class="font-bold text-slate-900 text-xs leading-snug tracking-tight group-hover:text-indigo-600 transition-colors">
+                    {{ act.title }}
+                  </h3>
                 </div>
 
-              </div>
-            }
+                <!-- Subtitle / Short Description -->
+                @if (act.subtitle) {
+                <p class="text-[10.5px] text-slate-500 font-normal leading-tight line-clamp-2 mt-0.5">
+                  {{ act.subtitle }}
+                </p>
+                }
 
-          }
+              </div>
+            </div>
+
+            }
+          </div>
 
         </div>
+        }
+
+        }
+
       </div>
+    </div>
     }
 
     <!-- TAB 2: BUDGET TRACKER (Ultra-Compact Excel Layout + Sidebar) -->
     @if (activeTab() === 'budget') {
-      <div class="flex flex-col lg:flex-row gap-3.5 w-full flex-1 min-h-0 py-1">
-        
-        <!-- MAIN EXCEL-STYLE TABLE (Left Side, Flex-1) -->
-        <div class="flex-1 bg-white rounded-xl border border-slate-200/90 shadow-2xs overflow-hidden flex flex-col min-h-0">
-          
-          <!-- Table Container with Vertical Scroll -->
-          <div class="overflow-y-auto flex-1 min-h-0">
-            <table class="w-full text-left text-xs text-slate-700 border-collapse">
-              <thead class="bg-slate-100/90 text-[10px] font-extrabold text-slate-500 uppercase tracking-wider border-b border-slate-200 sticky top-0 z-10">
-                <tr>
-                  <th class="px-4 py-1.5">Programmpunkt</th>
-                  <th class="px-3 py-1.5">Zeitpunkt</th>
-                  <th class="px-3 py-1.5">Betrag</th>
-                  <th class="px-3 py-1.5">Währung</th>
-                  <th class="px-4 py-1.5 text-right">Dein Anteil 50% (€)</th>
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-slate-100 font-medium text-xs">
-                @for (item of budgetActivities(); track item.activity.id) {
-                  <tr class="hover:bg-indigo-50/40 transition-colors h-8">
-                    
-                    <!-- Activity Title (Single line, no description) -->
-                    <td class="px-4 py-1 font-bold text-slate-900 truncate max-w-xs" [title]="item.activity.title">
-                      {{ item.activity.title }}
-                    </td>
+    <div class="flex flex-col lg:flex-row gap-3.5 w-full flex-1 min-h-0 py-1">
 
-                    <!-- Compact Day & Slot on One Line -->
-                    <td class="px-3 py-1 text-[11px] text-slate-500 whitespace-nowrap">
-                      {{ item.dayDate }} · <span class="font-semibold text-indigo-600">{{ getSlotLabel(item.slot) }}</span>
-                    </td>
+      <!-- MAIN EXCEL-STYLE TABLE (Left Side, Flex-1) -->
+      <div
+        class="flex-1 bg-white rounded-xl border border-slate-200/90 shadow-2xs overflow-hidden flex flex-col min-h-0">
 
-                    <!-- Amount Input -->
-                    <td class="px-3 py-1">
-                      <input 
-                        type="number" 
-                        step="0.5"
-                        [ngModel]="item.activity.cost"
-                        (ngModelChange)="updateActivityCost(item, $event)"
-                        class="w-20 px-2 py-0.5 bg-slate-50 border border-slate-300 rounded text-slate-900 font-bold text-xs focus:ring-2 focus:ring-indigo-500 outline-none">
-                    </td>
+        <!-- Table Container with Vertical Scroll -->
+        <div class="overflow-y-auto flex-1 min-h-0">
+          <table class="w-full text-left text-xs text-slate-700 border-collapse">
+            <thead
+              class="bg-slate-100/90 text-[10px] font-extrabold text-slate-500 uppercase tracking-wider border-b border-slate-200 sticky top-0 z-10">
+              <tr>
+                <th class="px-4 py-1.5">Programmpunkt</th>
+                <th class="px-3 py-1.5">Zeitpunkt</th>
+                <th class="px-3 py-1.5">Betrag</th>
+                <th class="px-3 py-1.5">Währung</th>
+                <th class="px-4 py-1.5 text-right">Dein Anteil 50% (€)</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 font-medium text-xs">
+              @for (item of budgetActivities(); track item.activity.id) {
+              <tr class="hover:bg-indigo-50/40 transition-colors h-8">
 
-                    <!-- Currency Select -->
-                    <td class="px-3 py-1">
-                      <select 
-                        [ngModel]="item.activity.currency || 'EUR'"
-                        (ngModelChange)="updateActivityCurrency(item, $event)"
-                        class="px-2 py-0.5 bg-slate-50 border border-slate-300 rounded text-slate-900 font-semibold text-xs focus:ring-2 focus:ring-indigo-500 outline-none">
-                        <option value="EUR">EUR (€)</option>
-                        <option value="GBP">GBP (£)</option>
-                      </select>
-                    </td>
+                <!-- Activity Title (Single line, no description) -->
+                <td class="px-4 py-1 font-bold text-slate-900 truncate max-w-xs" [title]="item.activity.title">
+                  {{ item.activity.title }}
+                </td>
 
-                    <!-- 50% Share in EUR -->
-                    <td class="px-4 py-1 text-right font-extrabold text-slate-900 whitespace-nowrap">
-                      {{ calcPersonalShareEur(item) }} €
-                    </td>
+                <!-- Compact Day & Slot on One Line -->
+                <td class="px-3 py-1 text-[11px] text-slate-500 whitespace-nowrap">
+                  {{ item.dayDate }} · <span class="font-semibold text-indigo-600">{{ getSlotLabel(item.slot) }}</span>
+                </td>
 
-                  </tr>
-                } @empty {
-                  <tr>
-                    <td colspan="5" class="px-4 py-6 text-center text-slate-400 italic text-xs">
-                      Keine Programmpunkte mit hinterlegten Kosten vorhanden.
-                    </td>
-                  </tr>
-                }
-              </tbody>
-            </table>
-          </div>
+                <!-- Amount Input -->
+                <td class="px-3 py-1">
+                  <input type="number" step="0.5" [ngModel]="item.activity.cost"
+                    (ngModelChange)="updateActivityCost(item, $event)"
+                    class="w-20 px-2 py-0.5 bg-slate-50 border border-slate-300 rounded text-slate-900 font-bold text-xs focus:ring-2 focus:ring-indigo-500 outline-none">
+                </td>
 
-        </div>
+                <!-- Currency Select -->
+                <td class="px-3 py-1">
+                  <select [ngModel]="item.activity.currency || 'EUR'"
+                    (ngModelChange)="updateActivityCurrency(item, $event)"
+                    class="px-2 py-0.5 bg-slate-50 border border-slate-300 rounded text-slate-900 font-semibold text-xs focus:ring-2 focus:ring-indigo-500 outline-none">
+                    <option value="EUR">EUR (€)</option>
+                    <option value="GBP">GBP (£)</option>
+                  </select>
+                </td>
 
-        <!-- SIDEBAR (Right Side, Compact Metrics) -->
-        <div class="w-full lg:w-72 shrink-0 space-y-3">
-          
-          <!-- Card 1: Gesamtkosten -->
-          <div class="bg-white p-3.5 rounded-xl border border-slate-200/90 shadow-2xs">
-            <span class="text-[10.5px] font-extrabold text-slate-400 uppercase tracking-wider block">Gesamtkosten Trip</span>
-            <div class="mt-1 flex items-baseline gap-1.5">
-              <span class="text-2xl font-black text-slate-900 tracking-tight">{{ totalEur() }} €</span>
-              <span class="text-xs text-slate-400 font-medium">EUR</span>
-            </div>
-            <p class="text-[10.5px] text-slate-500 mt-0.5">Summe aller Posten (Gesamt)</p>
-          </div>
+                <!-- 50% Share in EUR -->
+                <td class="px-4 py-1 text-right font-extrabold text-slate-900 whitespace-nowrap">
+                  {{ calcPersonalShareEur(item) }} €
+                </td>
 
-          <!-- Card 2: Dein Anteil -->
-          <div class="bg-gradient-to-br from-indigo-600 to-indigo-700 p-3.5 rounded-xl text-white shadow-xs">
-            <span class="text-[10.5px] font-extrabold text-indigo-200 uppercase tracking-wider block">Dein Anteil (50% Split)</span>
-            <div class="mt-1 flex items-baseline gap-1.5">
-              <span class="text-2xl font-black text-white tracking-tight">{{ myShareEur() }} €</span>
-              <span class="text-xs text-indigo-200 font-medium">pro Person</span>
-            </div>
-            <p class="text-[10.5px] text-indigo-100/80 mt-0.5">Alle Ausgaben werden 50/50 geteilt</p>
-          </div>
-
-          <!-- Card 3: Exchange Rate Settings -->
-          <div class="bg-white p-3.5 rounded-xl border border-slate-200/90 shadow-2xs">
-            <span class="text-[10.5px] font-extrabold text-slate-400 uppercase tracking-wider block mb-1.5">Wechselkurs Einstellen</span>
-            <div class="flex items-center gap-2">
-              <span class="text-xs font-bold text-slate-700">1 GBP =</span>
-              <input 
-                type="number" 
-                step="0.01"
-                [ngModel]="gbpToEurRate()"
-                (ngModelChange)="gbpToEurRate.set($event)"
-                class="w-20 px-2.5 py-1 bg-slate-50 border border-slate-300 rounded-lg text-slate-900 font-bold text-xs focus:ring-2 focus:ring-indigo-500 outline-none">
-              <span class="text-xs font-bold text-slate-700">EUR</span>
-            </div>
-            <p class="text-[10.5px] text-slate-500 mt-1.5">Automatische Umrechnung aller GBP-Posten</p>
-          </div>
-
-          <!-- Card 4: Toggle Filter for Free Activities -->
-          <div class="bg-white p-3.5 rounded-xl border border-slate-200/90 shadow-2xs">
-            <span class="text-[10.5px] font-extrabold text-slate-400 uppercase tracking-wider block mb-2">Filter & Anzeige</span>
-            <label class="flex items-center justify-between cursor-pointer group select-none">
-              <span class="text-xs font-bold text-slate-700 group-hover:text-indigo-600 transition-colors">
-                Kostenlose Punkte anzeigen
-              </span>
-              <input 
-                type="checkbox" 
-                [ngModel]="showFreeActivities()"
-                (ngModelChange)="showFreeActivities.set($event)"
-                class="w-4 h-4 accent-indigo-600 rounded cursor-pointer"
-              />
-            </label>
-            <p class="text-[10.5px] text-slate-500 mt-1.5 leading-relaxed">
-              Programmpunkte ohne hinterlegte Kosten in der Übersicht auflisten
-            </p>
-          </div>
-
+              </tr>
+              } @empty {
+              <tr>
+                <td colspan="5" class="px-4 py-6 text-center text-slate-400 italic text-xs">
+                  Keine Programmpunkte mit hinterlegten Kosten vorhanden.
+                </td>
+              </tr>
+              }
+            </tbody>
+          </table>
         </div>
 
       </div>
+
+      <!-- SIDEBAR (Right Side, Compact Metrics) -->
+      <div class="w-full lg:w-72 shrink-0 space-y-3">
+
+        <!-- Card 1: Gesamtkosten -->
+        <div class="bg-white p-3.5 rounded-xl border border-slate-200/90 shadow-2xs">
+          <span class="text-[10.5px] font-extrabold text-slate-400 uppercase tracking-wider block">Gesamtkosten
+            Trip</span>
+          <div class="mt-1 flex items-baseline gap-1.5">
+            <span class="text-2xl font-black text-slate-900 tracking-tight">{{ totalEur() }} €</span>
+            <span class="text-xs text-slate-400 font-medium">EUR</span>
+          </div>
+          <p class="text-[10.5px] text-slate-500 mt-0.5">Summe aller Posten (Gesamt)</p>
+        </div>
+
+        <!-- Card 2: Dein Anteil -->
+        <div class="bg-gradient-to-br from-indigo-600 to-indigo-700 p-3.5 rounded-xl text-white shadow-xs">
+          <span class="text-[10.5px] font-extrabold text-indigo-200 uppercase tracking-wider block">Dein Anteil (50%
+            Split)</span>
+          <div class="mt-1 flex items-baseline gap-1.5">
+            <span class="text-2xl font-black text-white tracking-tight">{{ myShareEur() }} €</span>
+            <span class="text-xs text-indigo-200 font-medium">pro Person</span>
+          </div>
+          <p class="text-[10.5px] text-indigo-100/80 mt-0.5">Alle Ausgaben werden 50/50 geteilt</p>
+        </div>
+
+        <!-- Card 3: Exchange Rate Settings -->
+        <div class="bg-white p-3.5 rounded-xl border border-slate-200/90 shadow-2xs">
+          <span class="text-[10.5px] font-extrabold text-slate-400 uppercase tracking-wider block mb-1.5">Wechselkurs
+            Einstellen</span>
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-bold text-slate-700">1 GBP =</span>
+            <input type="number" step="0.01" [ngModel]="gbpToEurRate()" (ngModelChange)="gbpToEurRate.set($event)"
+              class="w-20 px-2.5 py-1 bg-slate-50 border border-slate-300 rounded-lg text-slate-900 font-bold text-xs focus:ring-2 focus:ring-indigo-500 outline-none">
+            <span class="text-xs font-bold text-slate-700">EUR</span>
+          </div>
+          <p class="text-[10.5px] text-slate-500 mt-1.5">Automatische Umrechnung aller GBP-Posten</p>
+        </div>
+
+        <!-- Card 4: Toggle Filter for Free Activities -->
+        <div class="bg-white p-3.5 rounded-xl border border-slate-200/90 shadow-2xs">
+          <span class="text-[10.5px] font-extrabold text-slate-400 uppercase tracking-wider block mb-2">Filter &
+            Anzeige</span>
+          <label class="flex items-center justify-between cursor-pointer group select-none">
+            <span class="text-xs font-bold text-slate-700 group-hover:text-indigo-600 transition-colors">
+              Kostenlose Punkte anzeigen
+            </span>
+            <input type="checkbox" [ngModel]="showFreeActivities()" (ngModelChange)="showFreeActivities.set($event)"
+              class="w-4 h-4 accent-indigo-600 rounded cursor-pointer" />
+          </label>
+          <p class="text-[10.5px] text-slate-500 mt-1.5 leading-relaxed">
+            Programmpunkte ohne hinterlegte Kosten in der Übersicht auflisten
+          </p>
+        </div>
+
+      </div>
+
+    </div>
     }
 
   </main>
 
   <!-- ===== VIEW POPOVER (no backdrop, anchored to card) ===== -->
   @if (modalMode() === 'view' && selectedActivity(); as act) {
-    @let rect = viewPopoverRect();
+  @let rect = viewPopoverRect();
 
-    <!-- Click-outside overlay (invisible, no darkening) -->
-    <div 
-      (click)="closeModal()"
-      class="fixed inset-0 z-40">
-    </div>
+  <!-- Click-outside overlay (invisible, no darkening) -->
+  <div (click)="closeModal()" class="fixed inset-0 z-40">
+  </div>
 
-    <!-- Popover Card -->
-    <div 
-      class="view-popover fixed z-50 bg-white rounded-2xl shadow-2xl border border-slate-200/80 overflow-hidden animate-pop-in"
-      [style]="getPopoverStyle(rect)">
+  <!-- Popover Card -->
+  <div
+    class="view-popover fixed z-50 bg-white rounded-2xl shadow-2xl border border-slate-200/80 overflow-hidden animate-pop-in"
+    [style]="getPopoverStyle(rect)">
 
-      <!-- HERO: Image gallery or colour gradient header -->
-      @if (act.images && act.images.length > 0) {
-        <!-- Swipeable / scrolling hero images -->
-        <div class="relative h-48 bg-slate-100 overflow-hidden">
-          @if (act.images.length === 1) {
-            <img [src]="act.images[0]" alt="" class="w-full h-full object-cover">
-          } @else {
-            <!-- Multi-image strip with CSS scroll -->
-            <div class="flex h-full overflow-x-auto snap-x snap-mandatory scrollbar-none">
-              @for (imgUrl of act.images; track imgUrl) {
-                <div class="shrink-0 w-full h-full snap-start">
-                  <img [src]="imgUrl" alt="" class="w-full h-full object-cover">
-                </div>
-              }
-            </div>
-            <!-- Image count pill -->
-            <div class="absolute bottom-2 right-3 bg-black/60 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
-              {{ act.images.length }} Fotos
-            </div>
-          }
-          <!-- Close button overlaid on hero -->
-          <button 
-            (click)="closeModal()"
-            class="absolute top-2.5 right-2.5 w-7 h-7 flex items-center justify-center bg-black/50 hover:bg-black/70 text-white rounded-full transition-all">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>
-          </button>
-        </div>
+    <!-- HERO: Image gallery or colour gradient header -->
+    @if (act.images && act.images.length > 0) {
+    <!-- Swipeable / scrolling hero images -->
+    <div class="relative h-48 bg-slate-100 overflow-hidden">
+      @if (act.images.length === 1) {
+      <img [src]="act.images[0]" alt="" class="w-full h-full object-cover">
       } @else {
-        <!-- Colour-strip header when no images -->
-        <div class="relative h-14 bg-gradient-to-r from-indigo-500 to-violet-600 flex items-end px-4 pb-0">
-          <button 
-            (click)="closeModal()"
-            class="absolute top-2.5 right-2.5 w-7 h-7 flex items-center justify-center bg-white/20 hover:bg-white/40 text-white rounded-full transition-all">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>
-          </button>
+      <!-- Multi-image strip with CSS scroll -->
+      <div class="flex h-full overflow-x-auto snap-x snap-mandatory scrollbar-none">
+        @for (imgUrl of act.images; track imgUrl) {
+        <div class="shrink-0 w-full h-full snap-start">
+          <img [src]="imgUrl" alt="" class="w-full h-full object-cover">
         </div>
+        }
+      </div>
+      <!-- Image count pill -->
+      <div class="absolute bottom-2 right-3 bg-black/60 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
+        {{ act.images.length }} Fotos
+      </div>
+      }
+      <!-- Close button overlaid on hero -->
+      <button (click)="closeModal()"
+        class="absolute top-2.5 right-2.5 w-7 h-7 flex items-center justify-center bg-black/50 hover:bg-black/70 text-white rounded-full transition-all">
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+    } @else {
+    <!-- Colour-strip header when no images -->
+    <div class="relative h-14 bg-gradient-to-r from-indigo-500 to-violet-600 flex items-end px-4 pb-0">
+      <button (click)="closeModal()"
+        class="absolute top-2.5 right-2.5 w-7 h-7 flex items-center justify-center bg-white/20 hover:bg-white/40 text-white rounded-full transition-all">
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+    }
+
+    <!-- BODY -->
+    <div class="px-4 pt-3 pb-4 space-y-3">
+
+      <!-- Title & Subtitle -->
+      <div>
+        <h2 class="text-base font-extrabold text-slate-900 leading-snug">{{ act.title }}</h2>
+        @if (act.subtitle) {
+        <p class="text-xs text-slate-500 mt-0.5">{{ act.subtitle }}</p>
+        }
+      </div>
+
+      <!-- Cost Badge -->
+      @if (act.cost && act.cost > 0) {
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900 text-white font-bold text-xs">
+        <span>💰 {{ act.cost }} {{ act.currency || 'EUR' }}</span>
+        <span class="text-[10px] text-indigo-300 font-normal">({{ act.cost / 2 }} p.P.)</span>
+      </div>
       }
 
-      <!-- BODY -->
-      <div class="px-4 pt-3 pb-4 space-y-3">
+      <!-- Description prose -->
+      @if (act.description) {
+      <p class="text-xs text-slate-700 whitespace-pre-line leading-relaxed">{{ act.description }}</p>
+      }
 
-        <!-- Title & Subtitle -->
-        <div>
-          <h2 class="text-base font-extrabold text-slate-900 leading-snug">{{ act.title }}</h2>
-          @if (act.subtitle) {
-            <p class="text-xs text-slate-500 mt-0.5">{{ act.subtitle }}</p>
-          }
-        </div>
-
-        <!-- Cost Badge -->
-        @if (act.cost && act.cost > 0) {
-          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900 text-white font-bold text-xs">
-            <span>💰 {{ act.cost }} {{ act.currency || 'EUR' }}</span>
-            <span class="text-[10px] text-indigo-300 font-normal">({{ act.cost / 2 }} p.P.)</span>
-          </div>
+      <!-- Links -->
+      @let links = getActivityLinks(act);
+      @if (links.length > 0) {
+      <div class="flex flex-wrap gap-1.5">
+        @for (l of links; track l.url) {
+        <a [href]="l.url" target="_blank" rel="noopener" (click)="$event.stopPropagation()"
+          class="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 hover:text-indigo-800 bg-indigo-50 hover:bg-indigo-100/80 px-3 py-1.5 rounded-lg transition-all border border-indigo-200/60">
+          <svg class="w-3 h-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+          </svg>
+          <span>{{ l.label || 'Website' }}</span>
+        </a>
         }
-
-        <!-- Description prose -->
-        @if (act.description) {
-          <p class="text-xs text-slate-700 whitespace-pre-line leading-relaxed">{{ act.description }}</p>
-        }
-
-        <!-- Links -->
-        @let links = getActivityLinks(act);
-        @if (links.length > 0) {
-          <div class="flex flex-wrap gap-1.5">
-            @for (l of links; track l.url) {
-              <a 
-                [href]="l.url" 
-                target="_blank" 
-                rel="noopener"
-                (click)="$event.stopPropagation()"
-                class="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 hover:text-indigo-800 bg-indigo-50 hover:bg-indigo-100/80 px-3 py-1.5 rounded-lg transition-all border border-indigo-200/60">
-                <svg class="w-3 h-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-                <span>{{ l.label || 'Website' }}</span>
-              </a>
-            }
-          </div>
-        }
-
-        <!-- Footer Actions -->
-        <div class="pt-2 border-t border-slate-100 flex items-center justify-between">
-          <button 
-            (click)="deleteActivity(act, modalTargetDayIndex(), modalTargetSlot())"
-            class="px-3 py-1.5 text-xs font-bold text-red-600 hover:bg-red-50 rounded-lg transition-all flex items-center gap-1">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
-            Löschen
-          </button>
-
-          <button 
-            (click)="openEditModal()"
-            class="px-3.5 py-1.5 text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg transition-all flex items-center gap-1">
-            ✏️ Bearbeiten
-          </button>
-        </div>
-
       </div>
+      }
+
+      <!-- Footer Actions -->
+      <div class="pt-2 border-t border-slate-100 flex items-center justify-between">
+        <button (click)="deleteActivity(act, modalTargetDayIndex(), modalTargetSlot())"
+          class="px-3 py-1.5 text-xs font-bold text-red-600 hover:bg-red-50 rounded-lg transition-all flex items-center gap-1">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+          </svg>
+          Löschen
+        </button>
+
+        <button (click)="openEditModal()"
+          class="px-3.5 py-1.5 text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg transition-all flex items-center gap-1">
+          ✏️ Bearbeiten
+        </button>
+      </div>
+
     </div>
+  </div>
   }
 
   <!-- ===== EDIT / CREATE MODAL (centered, with backdrop) ===== -->
   @if (modalMode() === 'edit' || modalMode() === 'create') {
-    <div class="fixed inset-0 z-50 overflow-y-auto animate-fade-in">
-      
-      <!-- Backdrop -->
-      <div 
-        (click)="closeModal()"
-        class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs transition-opacity">
-      </div>
+  <div class="fixed inset-0 z-50 overflow-y-auto animate-fade-in">
 
-      <!-- Dialog Box -->
-      <div class="flex min-h-full items-center justify-center p-4">
-        <div class="relative w-full max-w-2xl bg-white rounded-2xl shadow-2xl border border-slate-100 overflow-hidden animate-pop-in z-10">
-          
-          <!-- Modal Header -->
-          <div class="px-5 py-3.5 bg-slate-50 border-b border-slate-200/80 flex items-center justify-between">
-            <h3 class="text-sm font-bold text-slate-900 flex items-center gap-2">
-              @if (modalMode() === 'edit') { ✏️ Programmpunkt Bearbeiten }
-              @if (modalMode() === 'create') { ➕ Neuer Programmpunkt }
-            </h3>
+    <!-- Backdrop -->
+    <div (click)="closeModal()" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs transition-opacity">
+    </div>
 
-            <button 
-              (click)="closeModal()"
-              class="p-1 text-slate-400 hover:text-slate-600 rounded-lg hover:bg-slate-200/60 transition-all">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+    <!-- Dialog Box -->
+    <div class="flex min-h-full items-center justify-center p-4">
+      <div
+        class="relative w-full max-w-2xl bg-white rounded-2xl shadow-2xl border border-slate-100 overflow-hidden animate-pop-in z-10">
+
+        <!-- Modal Header -->
+        <div class="px-5 py-3.5 bg-slate-50 border-b border-slate-200/80 flex items-center justify-between">
+          <h3 class="text-sm font-bold text-slate-900 flex items-center gap-2">
+            @if (modalMode() === 'edit') { ✏️ Programmpunkt Bearbeiten }
+            @if (modalMode() === 'create') { ➕ Neuer Programmpunkt }
+          </h3>
+
+          <button (click)="closeModal()"
+            class="p-1 text-slate-400 hover:text-slate-600 rounded-lg hover:bg-slate-200/60 transition-all">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- FORM -->
+        <form (ngSubmit)="saveModalActivity()" class="p-5 space-y-3.5">
+
+          <!-- Title -->
+          <div>
+            <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-0.5">Titel *</label>
+            <input type="text" required placeholder="z.B. Katakomben von Paris" [ngModel]="editForm().title"
+              (ngModelChange)="editForm.set({...editForm(), title: $event})" name="title"
+              class="w-full px-3 py-1.5 bg-slate-50 border border-slate-300 rounded-lg text-slate-900 font-semibold text-xs focus:ring-2 focus:ring-indigo-500 outline-none">
+          </div>
+
+          <!-- Subtitle / Short Description -->
+          <div>
+            <label
+              class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-0.5">Kurzbeschreibung</label>
+            <input type="text" placeholder="z.B. Knochen-Labyrinth unter Paris" [ngModel]="editForm().subtitle"
+              (ngModelChange)="editForm.set({...editForm(), subtitle: $event})" name="subtitle"
+              class="w-full px-3 py-1.5 bg-slate-50 border border-slate-300 rounded-lg text-slate-900 text-xs focus:ring-2 focus:ring-indigo-500 outline-none">
+          </div>
+
+          <!-- Description -->
+          <div>
+            <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-0.5">Ausführliche
+              Notizen & Details</label>
+            <textarea rows="2.5" placeholder="Details, Öffnungszeiten, Vorab-Buchung Hinweise..."
+              [ngModel]="editForm().description" (ngModelChange)="editForm.set({...editForm(), description: $event})"
+              name="description"
+              class="w-full px-3 py-1.5 bg-slate-50 border border-slate-300 rounded-lg text-slate-900 text-xs focus:ring-2 focus:ring-indigo-500 outline-none"></textarea>
+          </div>
+
+          <!-- Links List Editor -->
+          <div>
+            <div class="flex items-center justify-between mb-1">
+              <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider">Webseiten &
+                Links</label>
+              <button type="button" (click)="addLinkFormRow()"
+                class="text-[11px] font-bold text-indigo-600 hover:text-indigo-800 flex items-center gap-1">
+                + Link hinzufügen
+              </button>
+            </div>
+
+            @if (editForm().links.length === 0) {
+            <p class="text-[11px] text-slate-400 italic">Keine Links. Klicke auf "+ Link hinzufügen".</p>
+            } @else {
+            <div class="space-y-2">
+              @for (linkItem of editForm().links; track $index; let linkIdx = $index) {
+              <div class="flex items-center gap-2 bg-slate-50 p-2 rounded-lg border border-slate-200">
+                <!-- URL Input -->
+                <div class="flex-1">
+                  <input type="url" placeholder="https://..." [ngModel]="linkItem.url"
+                    (ngModelChange)="updateLinkFormRow(linkIdx, 'url', $event)" [name]="'link_url_' + linkIdx"
+                    class="w-full px-2 py-1 bg-white border border-slate-300 rounded text-slate-900 text-xs focus:ring-2 focus:ring-indigo-500 outline-none">
+                </div>
+
+                <!-- Custom Label Input (falls back to "Website") -->
+                <div class="w-36">
+                  <input type="text" placeholder="Website" [ngModel]="linkItem.label"
+                    (ngModelChange)="updateLinkFormRow(linkIdx, 'label', $event)" [name]="'link_label_' + linkIdx"
+                    class="w-full px-2 py-1 bg-white border border-slate-300 rounded text-slate-900 text-xs focus:ring-2 focus:ring-indigo-500 outline-none">
+                </div>
+
+                <!-- Remove Link Button -->
+                <button type="button" (click)="removeLinkFormRow(linkIdx)" title="Link entfernen"
+                  class="p-1 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded transition-colors shrink-0">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+              }
+            </div>
+            }
+          </div>
+
+          <!-- Image URLs (one per line) -->
+          <div>
+            <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-0.5">Bild-URLs (1 URL
+              pro Zeile)</label>
+            <textarea rows="2" placeholder="https://images.unsplash.com/..." [ngModel]="editForm().imagesStr"
+              (ngModelChange)="editForm.set({...editForm(), imagesStr: $event})" name="imagesStr"
+              class="w-full px-3 py-1.5 bg-slate-50 border border-slate-300 rounded-lg text-slate-900 text-[11px] font-mono focus:ring-2 focus:ring-indigo-500 outline-none"></textarea>
+          </div>
+
+          <!-- COMPACT FINANCES ROW (Preis & Währung) -->
+          <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 space-y-1.5">
+            <label class="block text-[10.5px] font-bold text-slate-700 uppercase tracking-wider">Kosten (wird
+              automatisch 50/50 geteilt)</label>
+
+            <div class="flex items-center gap-2.5">
+              <!-- Cost Amount -->
+              <div class="flex-1">
+                <span class="text-[10px] text-slate-500 block mb-0.5">Gesamtbetrag</span>
+                <input type="number" step="0.5" placeholder="0.00" [ngModel]="editForm().cost"
+                  (ngModelChange)="editForm.set({...editForm(), cost: $event})" name="cost"
+                  class="w-full px-2.5 py-1 bg-white border border-slate-300 rounded-md text-slate-900 font-bold text-xs focus:ring-2 focus:ring-indigo-500 outline-none">
+              </div>
+
+              <!-- Currency Dropdown -->
+              <div>
+                <span class="text-[10px] text-slate-500 block mb-0.5">Währung</span>
+                <select [ngModel]="editForm().currency"
+                  (ngModelChange)="editForm.set({...editForm(), currency: $event})" name="currency"
+                  class="px-2.5 py-1 bg-white border border-slate-300 rounded-md text-slate-900 font-bold text-xs focus:ring-2 focus:ring-indigo-500 outline-none">
+                  <option value="EUR">EUR (€)</option>
+                  <option value="GBP">GBP (£)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Form Action Buttons -->
+          <div class="pt-3 border-t border-slate-100 flex items-center justify-end gap-2">
+            <button type="button" (click)="closeModal()"
+              class="px-3.5 py-1.5 text-xs font-bold text-slate-600 hover:bg-slate-100 rounded-lg transition-all">
+              Abbrechen
+            </button>
+            <button type="submit"
+              class="px-4 py-1.5 text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg shadow-2xs transition-all">
+              Speichern
             </button>
           </div>
 
-          <!-- FORM -->
-          <form (ngSubmit)="saveModalActivity()" class="p-5 space-y-3.5">
-            
-            <!-- Title -->
-            <div>
-              <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-0.5">Titel *</label>
-              <input 
-                type="text" 
-                required
-                placeholder="z.B. Katakomben von Paris"
-                [ngModel]="editForm().title"
-                (ngModelChange)="editForm.set({...editForm(), title: $event})"
-                name="title"
-                class="w-full px-3 py-1.5 bg-slate-50 border border-slate-300 rounded-lg text-slate-900 font-semibold text-xs focus:ring-2 focus:ring-indigo-500 outline-none">
-            </div>
+        </form>
 
-            <!-- Subtitle / Short Description -->
-            <div>
-              <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-0.5">Kurzbeschreibung</label>
-              <input 
-                type="text" 
-                placeholder="z.B. Knochen-Labyrinth unter Paris"
-                [ngModel]="editForm().subtitle"
-                (ngModelChange)="editForm.set({...editForm(), subtitle: $event})"
-                name="subtitle"
-                class="w-full px-3 py-1.5 bg-slate-50 border border-slate-300 rounded-lg text-slate-900 text-xs focus:ring-2 focus:ring-indigo-500 outline-none">
-            </div>
-
-            <!-- Description -->
-            <div>
-              <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-0.5">Ausführliche Notizen & Details</label>
-              <textarea 
-                rows="2.5"
-                placeholder="Details, Öffnungszeiten, Vorab-Buchung Hinweise..."
-                [ngModel]="editForm().description"
-                (ngModelChange)="editForm.set({...editForm(), description: $event})"
-                name="description"
-                class="w-full px-3 py-1.5 bg-slate-50 border border-slate-300 rounded-lg text-slate-900 text-xs focus:ring-2 focus:ring-indigo-500 outline-none"></textarea>
-            </div>
-
-            <!-- Links List Editor -->
-            <div>
-              <div class="flex items-center justify-between mb-1">
-                <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider">Webseiten & Links</label>
-                <button 
-                  type="button"
-                  (click)="addLinkFormRow()"
-                  class="text-[11px] font-bold text-indigo-600 hover:text-indigo-800 flex items-center gap-1">
-                  + Link hinzufügen
-                </button>
-              </div>
-
-              @if (editForm().links.length === 0) {
-                <p class="text-[11px] text-slate-400 italic">Keine Links. Klicke auf "+ Link hinzufügen".</p>
-              } @else {
-                <div class="space-y-2">
-                  @for (linkItem of editForm().links; track $index; let linkIdx = $index) {
-                    <div class="flex items-center gap-2 bg-slate-50 p-2 rounded-lg border border-slate-200">
-                      <!-- URL Input -->
-                      <div class="flex-1">
-                        <input 
-                          type="url" 
-                          placeholder="https://..."
-                          [ngModel]="linkItem.url"
-                          (ngModelChange)="updateLinkFormRow(linkIdx, 'url', $event)"
-                          [name]="'link_url_' + linkIdx"
-                          class="w-full px-2 py-1 bg-white border border-slate-300 rounded text-slate-900 text-xs focus:ring-2 focus:ring-indigo-500 outline-none">
-                      </div>
-
-                      <!-- Custom Label Input (falls back to "Website") -->
-                      <div class="w-36">
-                        <input 
-                          type="text" 
-                          placeholder="Website"
-                          [ngModel]="linkItem.label"
-                          (ngModelChange)="updateLinkFormRow(linkIdx, 'label', $event)"
-                          [name]="'link_label_' + linkIdx"
-                          class="w-full px-2 py-1 bg-white border border-slate-300 rounded text-slate-900 text-xs focus:ring-2 focus:ring-indigo-500 outline-none">
-                      </div>
-
-                      <!-- Remove Link Button -->
-                      <button 
-                        type="button"
-                        (click)="removeLinkFormRow(linkIdx)"
-                        title="Link entfernen"
-                        class="p-1 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded transition-colors shrink-0">
-                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-                      </button>
-                    </div>
-                  }
-                </div>
-              }
-            </div>
-
-            <!-- Image URLs (one per line) -->
-            <div>
-              <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-0.5">Bild-URLs (1 URL pro Zeile)</label>
-              <textarea 
-                rows="2"
-                placeholder="https://images.unsplash.com/..."
-                [ngModel]="editForm().imagesStr"
-                (ngModelChange)="editForm.set({...editForm(), imagesStr: $event})"
-                name="imagesStr"
-                class="w-full px-3 py-1.5 bg-slate-50 border border-slate-300 rounded-lg text-slate-900 text-[11px] font-mono focus:ring-2 focus:ring-indigo-500 outline-none"></textarea>
-            </div>
-
-            <!-- COMPACT FINANCES ROW (Preis & Währung) -->
-            <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 space-y-1.5">
-              <label class="block text-[10.5px] font-bold text-slate-700 uppercase tracking-wider">Kosten (wird automatisch 50/50 geteilt)</label>
-              
-              <div class="flex items-center gap-2.5">
-                <!-- Cost Amount -->
-                <div class="flex-1">
-                  <span class="text-[10px] text-slate-500 block mb-0.5">Gesamtbetrag</span>
-                  <input 
-                    type="number" 
-                    step="0.5"
-                    placeholder="0.00"
-                    [ngModel]="editForm().cost"
-                    (ngModelChange)="editForm.set({...editForm(), cost: $event})"
-                    name="cost"
-                    class="w-full px-2.5 py-1 bg-white border border-slate-300 rounded-md text-slate-900 font-bold text-xs focus:ring-2 focus:ring-indigo-500 outline-none">
-                </div>
-
-                <!-- Currency Dropdown -->
-                <div>
-                  <span class="text-[10px] text-slate-500 block mb-0.5">Währung</span>
-                  <select 
-                    [ngModel]="editForm().currency"
-                    (ngModelChange)="editForm.set({...editForm(), currency: $event})"
-                    name="currency"
-                    class="px-2.5 py-1 bg-white border border-slate-300 rounded-md text-slate-900 font-bold text-xs focus:ring-2 focus:ring-indigo-500 outline-none">
-                    <option value="EUR">EUR (€)</option>
-                    <option value="GBP">GBP (£)</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-
-            <!-- Form Action Buttons -->
-            <div class="pt-3 border-t border-slate-100 flex items-center justify-end gap-2">
-              <button 
-                type="button"
-                (click)="closeModal()"
-                class="px-3.5 py-1.5 text-xs font-bold text-slate-600 hover:bg-slate-100 rounded-lg transition-all">
-                Abbrechen
-              </button>
-              <button 
-                type="submit"
-                class="px-4 py-1.5 text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg shadow-2xs transition-all">
-                Speichern
-              </button>
-            </div>
-
-          </form>
-
-        </div>
       </div>
-
     </div>
+
+  </div>
   }
 
   <!-- UNDO SNACKBAR (FLOATING TOAST) -->
   @if (showSnackbar()) {
-    @if (deletedCache(); as cache) {
-      <div class="fixed bottom-4 right-4 z-50 bg-slate-900 text-white px-3.5 py-2.5 rounded-xl shadow-xl flex items-center gap-3 animate-pop-in border border-slate-700">
-        <div class="flex items-center gap-2">
-          <span class="text-base">🗑️</span>
-          <div class="text-xs">
-            <span class="font-bold">"{{ cache.activity.title }}"</span> gelöscht.
-          </div>
-        </div>
-        <button 
-          (click)="undoDelete()"
-          class="px-2.5 py-1 bg-indigo-500 hover:bg-indigo-600 text-white font-bold text-xs rounded-lg shadow-2xs transition-all">
-          Rückgängig
-        </button>
+  @if (deletedCache(); as cache) {
+  <div
+    class="fixed bottom-4 right-4 z-50 bg-slate-900 text-white px-3.5 py-2.5 rounded-xl shadow-xl flex items-center gap-3 animate-pop-in border border-slate-700">
+    <div class="flex items-center gap-2">
+      <span class="text-base">🗑️</span>
+      <div class="text-xs">
+        <span class="font-bold">"{{ cache.activity.title }}"</span> gelöscht.
       </div>
-    } @else if (deletedDayCache(); as dayCache) {
-      @let dayInfo = formatDayHeaderParts(tripData().startDate, dayCache.index, dayCache.day.location);
-      <div class="fixed bottom-4 right-4 z-50 bg-slate-900 text-white px-3.5 py-2.5 rounded-xl shadow-xl flex items-center gap-3 animate-pop-in border border-slate-700">
-        <div class="flex items-center gap-2">
-          <span class="text-base">📅</span>
-          <div class="text-xs">
-            Tag <span class="font-bold">({{ dayInfo.weekday }}, {{ dayInfo.date }})</span> entfernt.
-          </div>
-        </div>
-        <button 
-          (click)="undoDeleteDay()"
-          class="px-2.5 py-1 bg-indigo-500 hover:bg-indigo-600 text-white font-bold text-xs rounded-lg shadow-2xs transition-all">
-          Rückgängig
-        </button>
+    </div>
+    <button (click)="undoDelete()"
+      class="px-2.5 py-1 bg-indigo-500 hover:bg-indigo-600 text-white font-bold text-xs rounded-lg shadow-2xs transition-all">
+      Rückgängig
+    </button>
+  </div>
+  } @else if (deletedDayCache(); as dayCache) {
+  @let dayInfo = formatDayHeaderParts(tripData().startDate, dayCache.index, dayCache.day.location);
+  <div
+    class="fixed bottom-4 right-4 z-50 bg-slate-900 text-white px-3.5 py-2.5 rounded-xl shadow-xl flex items-center gap-3 animate-pop-in border border-slate-700">
+    <div class="flex items-center gap-2">
+      <span class="text-base">📅</span>
+      <div class="text-xs">
+        Tag <span class="font-bold">({{ dayInfo.weekday }}, {{ dayInfo.date }})</span> entfernt.
       </div>
-    }
+    </div>
+    <button (click)="undoDeleteDay()"
+      class="px-2.5 py-1 bg-indigo-500 hover:bg-indigo-600 text-white font-bold text-xs rounded-lg shadow-2xs transition-all">
+      Rückgängig
+    </button>
+  </div>
+  }
   }
 
   <!-- DAY LOCATION & BACKGROUND EDITOR MODAL -->
   @if (locationModalOpen()) {
-    <div class="fixed inset-0 z-50 flex items-center justify-center p-4">
-      <!-- Backdrop -->
-      <div (click)="closeLocationModal()" class="fixed inset-0 bg-slate-900/40 backdrop-blur-xs animate-fade-in"></div>
+  <div class="fixed inset-0 z-50 flex items-center justify-center p-4">
+    <!-- Backdrop -->
+    <div (click)="closeLocationModal()" class="fixed inset-0 bg-slate-900/40 backdrop-blur-xs animate-fade-in"></div>
 
-      <!-- Modal Container Card -->
-      <div class="bg-white rounded-2xl shadow-xl border border-slate-200/90 w-full max-w-md overflow-hidden z-10 animate-pop-in flex flex-col max-h-[85vh]">
-        
-        <!-- HEADER -->
-        <div class="px-5 py-3 border-b border-slate-100 flex items-center justify-between shrink-0 bg-slate-50/50">
-          <div class="flex items-center gap-2">
-            <span class="text-lg">📍</span>
-            <div>
-              <h3 class="font-bold text-slate-900 text-sm leading-tight">
-                {{ editingLocation() ? 'Hintergrund-Editor' : 'Ort wählen' }}
-              </h3>
-              <p class="text-[11px] text-slate-500 font-medium">
-                {{ editingLocation() ? 'Farben, Stufen & Rotation anpassen' : 'Wähle einen Ort oder passe das Design an' }}
-              </p>
-            </div>
+    <!-- Modal Container Card -->
+    <div
+      class="bg-white rounded-2xl shadow-xl border border-slate-200/90 w-full max-w-md overflow-hidden z-10 animate-pop-in flex flex-col max-h-[85vh]">
+
+      <!-- HEADER -->
+      <div class="px-5 py-3 border-b border-slate-100 flex items-center justify-between shrink-0 bg-slate-50/50">
+        <div class="flex items-center gap-2">
+          <span class="text-lg">📍</span>
+          <div>
+            <h3 class="font-bold text-slate-900 text-sm leading-tight">
+              {{ editingLocation() ? 'Hintergrund-Editor' : 'Ort wählen' }}
+            </h3>
+            <p class="text-[11px] text-slate-500 font-medium">
+              {{ editingLocation() ? 'Farben, Stufen & Rotation anpassen' : 'Wähle einen Ort oder passe das Design an'
+              }}
+            </p>
           </div>
-          <button (click)="closeLocationModal()" class="text-slate-400 hover:text-slate-600 p-1.5 rounded-lg hover:bg-slate-200/60 transition-colors">
-            ✕
-          </button>
         </div>
+        <button (click)="closeLocationModal()"
+          class="text-slate-400 hover:text-slate-600 p-1.5 rounded-lg hover:bg-slate-200/60 transition-colors">
+          ✕
+        </button>
+      </div>
 
-        <!-- VIEW 1: LOCATIONS PRESET LIST -->
-        @if (!editingLocation()) {
-          <div class="p-5 overflow-y-auto space-y-3 flex-1">
-            
-            <div class="space-y-2">
-              <!-- Neutral Option -->
-              <div 
-                (click)="selectLocationForDay('')"
-                [class]="isLocationSelectedForDay('') 
+      <!-- VIEW 1: LOCATIONS PRESET LIST -->
+      @if (!editingLocation()) {
+      <div class="p-5 overflow-y-auto space-y-3 flex-1">
+
+        <div class="space-y-2">
+          <!-- Neutral Option -->
+          <div (click)="selectLocationForDay('')"
+            [class]="isLocationSelectedForDay('') 
                   ? 'p-2.5 rounded-xl border-2 border-indigo-600 bg-indigo-50/40 shadow-2xs transition-all flex items-center justify-between cursor-pointer group' 
                   : 'p-2.5 rounded-xl border border-slate-200/80 bg-white hover:bg-slate-50 shadow-2xs transition-all flex items-center justify-between cursor-pointer group'">
-                <div class="flex items-center gap-2.5">
-                  <div [class]="isLocationSelectedForDay('') 
+            <div class="flex items-center gap-2.5">
+              <div
+                [class]="isLocationSelectedForDay('') 
                     ? 'w-4 h-4 rounded-full border-2 border-indigo-600 flex items-center justify-center bg-indigo-600 shrink-0' 
                     : 'w-4 h-4 rounded-full border-2 border-slate-300 bg-white group-hover:border-slate-400 shrink-0 flex items-center justify-center'">
-                    @if (isLocationSelectedForDay('')) {
-                      <div class="w-1.5 h-1.5 rounded-full bg-white"></div>
-                    }
-                  </div>
-                  <span class="font-extrabold text-slate-800 text-xs">Neutral</span>
-                </div>
+                @if (isLocationSelectedForDay('')) {
+                <div class="w-1.5 h-1.5 rounded-full bg-white"></div>
+                }
               </div>
+              <span class="font-extrabold text-slate-800 text-xs">Neutral</span>
+            </div>
+          </div>
 
-              <!-- Location Presets List -->
-              @for (loc of getLocationsList(); track loc.name) {
-                @let selected = isLocationSelectedForDay(loc.name);
-                <div 
-                  (click)="selectLocationForDay(loc.name)"
-                  [style.background]="buildGradientCss(loc)"
-                  [style.borderColor]="selected ? (loc.borderColor || '#4f46e5') : (loc.borderColor || '#e2e8f0')"
-                  [class]="selected
+          <!-- Location Presets List -->
+          @for (loc of getLocationsList(); track loc.name) {
+          @let selected = isLocationSelectedForDay(loc.name);
+          <div (click)="selectLocationForDay(loc.name)" [style.background]="buildGradientCss(loc)"
+            [style.borderColor]="selected ? (loc.borderColor || '#4f46e5') : (loc.borderColor || '#e2e8f0')"
+            [class]="selected
                     ? 'p-2.5 rounded-xl border-2 shadow-2xs transition-all flex items-center justify-between cursor-pointer group ring-2 ring-indigo-500/20'
                     : 'p-2.5 rounded-xl border shadow-2xs hover:shadow-md transition-all flex items-center justify-between cursor-pointer group'">
-                  
-                  <div class="flex items-center gap-2.5">
-                    <!-- Radio Button -->
-                    <div [class]="selected 
+
+            <div class="flex items-center gap-2.5">
+              <!-- Radio Button -->
+              <div
+                [class]="selected 
                       ? 'w-4 h-4 rounded-full border-2 border-slate-900 bg-slate-900 flex items-center justify-center shrink-0 shadow-2xs' 
                       : 'w-4 h-4 rounded-full border-2 border-slate-400/80 bg-white/90 group-hover:border-slate-600 shrink-0 flex items-center justify-center'">
-                      @if (selected) {
-                        <div class="w-1.5 h-1.5 rounded-full bg-white"></div>
-                      }
-                    </div>
-                    
-                    <span class="font-extrabold text-slate-900 text-xs tracking-tight">
-                      {{ loc.name }}
-                    </span>
-                  </div>
+                @if (selected) {
+                <div class="w-1.5 h-1.5 rounded-full bg-white"></div>
+                }
+              </div>
 
-                  <!-- Action Buttons: Edit & Delete (No 'Wählen' button) -->
-                  <div class="flex items-center gap-1 z-10" (click)="$event.stopPropagation()">
-                    <button 
-                      (click)="openLocationEditor(loc)"
-                      title="Design bearbeiten"
-                      class="p-1.5 bg-white/80 hover:bg-white text-slate-700 hover:text-indigo-600 rounded-lg shadow-2xs transition-colors">
-                      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
-                      </svg>
-                    </button>
-                    @if (getLocationsList().length > 1) {
-                      <button 
-                        (click)="deleteLocationPreset(loc.name, $event)"
-                        title="Ort löschen"
-                        class="p-1.5 bg-white/80 hover:bg-rose-50 text-slate-400 hover:text-rose-600 rounded-lg shadow-2xs transition-colors">
-                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
-                        </svg>
-                      </button>
-                    }
-                  </div>
+              <span class="font-extrabold text-slate-900 text-xs tracking-tight">
+                {{ loc.name }}
+              </span>
+            </div>
 
-                </div>
+            <!-- Action Buttons: Edit & Delete (No 'Wählen' button) -->
+            <div class="flex items-center gap-1 z-10" (click)="$event.stopPropagation()">
+              <button (click)="openLocationEditor(loc)" title="Design bearbeiten"
+                class="p-1.5 bg-white/80 hover:bg-white text-slate-700 hover:text-indigo-600 rounded-lg shadow-2xs transition-colors">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                </svg>
+              </button>
+              @if (getLocationsList().length > 1) {
+              <button (click)="deleteLocationPreset(loc.name, $event)" title="Ort löschen"
+                class="p-1.5 bg-white/80 hover:bg-rose-50 text-slate-400 hover:text-rose-600 rounded-lg shadow-2xs transition-colors">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                </svg>
+              </button>
               }
             </div>
 
-            <!-- Add Location Button at Bottom -->
-            <button 
-              (click)="openLocationEditor()"
-              class="w-full py-2.5 px-3 border border-dashed border-slate-300 hover:border-indigo-500 hover:bg-indigo-50/50 text-indigo-600 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 transition-all shadow-2xs">
-              <span class="text-sm font-extrabold">+</span> Ort hinzufügen
-            </button>
-
           </div>
+          }
+        </div>
 
-          <!-- FOOTER -->
-          <div class="px-5 py-3 border-t border-slate-100 flex items-center justify-end shrink-0 bg-slate-50/50">
-            <button 
-              (click)="closeLocationModal()"
-              class="px-4 py-1.5 text-xs font-bold text-slate-600 hover:bg-slate-200/60 rounded-xl transition-all">
-              Schließen
-            </button>
-          </div>
-        }
-
-        <!-- VIEW 2: BACKGROUND EDITOR -->
-        @if (editingLocation(); as editLoc) {
-          <div class="p-5 overflow-y-auto space-y-4 flex-1 text-left">
-            
-            <!-- LIVE PREVIEW CARD -->
-            <div class="space-y-1">
-              <span class="text-[10.5px] font-bold text-slate-500 uppercase tracking-wider block">Live-Vorschau</span>
-              <div 
-                [style.background]="buildGradientCss(editLoc)"
-                [style.borderColor]="editLoc.borderColor || '#e2e8f0'"
-                class="px-3 py-2 rounded-xl border shadow-2xs flex items-center justify-between h-9 transition-all">
-                <div class="flex items-center gap-2">
-                  <span class="bg-slate-900 text-white font-extrabold text-[10.5px] px-1.5 py-0.5 rounded uppercase">DI</span>
-                  <span class="font-extrabold text-slate-900 text-xs">08. Juni</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- ORTSNAME -->
-            <div class="space-y-1">
-              <label class="block text-[10.5px] font-bold text-slate-600 uppercase tracking-wider">Ortsname</label>
-              <input 
-                type="text" 
-                placeholder="z.B. Rom, Tokio..."
-                [ngModel]="editLoc.name"
-                (ngModelChange)="editingLocation.set({...editLoc, name: $event})"
-                class="w-full px-2.5 py-1.5 bg-slate-50 border border-slate-300 rounded-lg text-slate-900 text-xs font-bold focus:ring-2 focus:ring-indigo-500 outline-none"
-              />
-            </div>
-
-            <!-- GRADIENT ROTATION & TYPE -->
-            <div class="bg-slate-50 p-3 rounded-xl border border-slate-200/80 space-y-3">
-              <div class="flex items-center justify-between">
-                <label class="text-[11px] font-bold text-slate-700 uppercase tracking-wider">Rotation / Winkel</label>
-                <span class="font-mono text-xs font-bold text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded">{{ editLoc.angle }}°</span>
-              </div>
-              
-              <input 
-                type="range" 
-                min="0" 
-                max="360" 
-                step="5"
-                [ngModel]="editLoc.angle"
-                (ngModelChange)="editingLocation.set({...editLoc, angle: +$event})"
-                class="w-full accent-indigo-600 cursor-pointer"
-              />
-
-              <div class="flex items-center justify-between pt-1">
-                <label class="text-[11px] font-bold text-slate-700 uppercase tracking-wider">Rahmenfarbe</label>
-                <input 
-                  type="color" 
-                  [ngModel]="editLoc.borderColor"
-                  (ngModelChange)="editingLocation.set({...editLoc, borderColor: $event})"
-                  class="w-7 h-7 rounded border-0 cursor-pointer p-0 bg-transparent"
-                />
-              </div>
-            </div>
-
-            <!-- GRADIENT STOPS EDITOR -->
-            <div class="space-y-2">
-              <div class="flex items-center justify-between">
-                <span class="text-[10.5px] font-bold text-slate-600 uppercase tracking-wider">Farb-Stufen (Gradient Steps)</span>
-                <button 
-                  (click)="addGradientStop()"
-                  class="text-xs font-bold text-indigo-600 hover:text-indigo-800 flex items-center gap-1">
-                  <span>+</span> Stufe hinzufügen
-                </button>
-              </div>
-
-              <div class="space-y-2 bg-slate-50 p-3 rounded-xl border border-slate-200/80">
-                @for (stop of editLoc.stops; track $index; let idx = $index) {
-                  <div class="flex items-center gap-2 bg-white p-2 rounded-lg border border-slate-200/80 shadow-2xs">
-                    
-                    <!-- Color Picker -->
-                    <input 
-                      type="color" 
-                      [ngModel]="stop.color"
-                      (ngModelChange)="updateEditingStopColor(idx, $event)"
-                      class="w-7 h-7 rounded border-0 cursor-pointer p-0 shrink-0 bg-transparent"
-                    />
-
-                    <!-- Color Code Text Field -->
-                    <input 
-                      type="text" 
-                      [ngModel]="stop.color"
-                      (ngModelChange)="updateEditingStopColor(idx, $event)"
-                      class="w-20 px-1.5 py-1 font-mono text-[11px] bg-slate-50 border border-slate-300 rounded text-slate-800"
-                    />
-
-                    <!-- Offset Slider -->
-                    <div class="flex-1 flex items-center gap-1.5">
-                      <input 
-                        type="range" 
-                        min="0" 
-                        max="100" 
-                        step="1"
-                        [ngModel]="stop.offset"
-                        (ngModelChange)="updateEditingStopOffset(idx, $event)"
-                        class="w-full accent-indigo-600 cursor-pointer"
-                      />
-                      <span class="text-[10px] font-mono font-bold text-slate-500 w-8 text-right">{{ stop.offset }}%</span>
-                    </div>
-
-                    <!-- Delete Stop -->
-                    @if (editLoc.stops.length > 2) {
-                      <button 
-                        (click)="removeGradientStop(idx)"
-                        title="Stufe entfernen"
-                        class="text-slate-400 hover:text-rose-600 p-1">
-                        ✕
-                      </button>
-                    }
-                  </div>
-                }
-              </div>
-            </div>
-
-          </div>
-
-          <!-- FOOTER -->
-          <div class="px-5 py-3 border-t border-slate-100 flex items-center justify-between shrink-0 bg-slate-50/50">
-            <button 
-              (click)="closeLocationEditor()"
-              class="px-3.5 py-1.5 text-xs font-bold text-slate-600 hover:bg-slate-200/60 rounded-xl transition-all">
-              Zurück zur Liste
-            </button>
-            <button 
-              (click)="saveLocationPreset()"
-              class="px-4 py-1.5 text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl shadow-2xs transition-all flex items-center gap-1">
-              <span>✓</span> Speichern & Übernehmen
-            </button>
-          </div>
-        }
+        <!-- Add Location Button at Bottom -->
+        <button (click)="openLocationEditor()"
+          class="w-full py-2.5 px-3 border border-dashed border-slate-300 hover:border-indigo-500 hover:bg-indigo-50/50 text-indigo-600 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 transition-all shadow-2xs">
+          <span class="text-sm font-extrabold">+</span> Ort hinzufügen
+        </button>
 
       </div>
+
+      <!-- FOOTER -->
+      <div class="px-5 py-3 border-t border-slate-100 flex items-center justify-end shrink-0 bg-slate-50/50">
+        <button (click)="closeLocationModal()"
+          class="px-4 py-1.5 text-xs font-bold text-slate-600 hover:bg-slate-200/60 rounded-xl transition-all">
+          Schließen
+        </button>
+      </div>
+      }
+
+      <!-- VIEW 2: BACKGROUND EDITOR -->
+      @if (editingLocation(); as editLoc) {
+      <div class="p-5 overflow-y-auto space-y-4 flex-1 text-left">
+
+        <!-- LIVE PREVIEW CARD -->
+        <div class="space-y-1">
+          <span class="text-[10.5px] font-bold text-slate-500 uppercase tracking-wider block">Live-Vorschau</span>
+          <div [style.background]="buildGradientCss(editLoc)" [style.borderColor]="editLoc.borderColor || '#e2e8f0'"
+            class="px-3 py-2 rounded-xl border shadow-2xs flex items-center justify-between h-9 transition-all">
+            <div class="flex items-center gap-2">
+              <span
+                class="bg-slate-900 text-white font-extrabold text-[10.5px] px-1.5 py-0.5 rounded uppercase">DI</span>
+              <span class="font-extrabold text-slate-900 text-xs">08. Juni</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ORTSNAME -->
+        <div class="space-y-1">
+          <label class="block text-[10.5px] font-bold text-slate-600 uppercase tracking-wider">Ortsname</label>
+          <input type="text" placeholder="z.B. Rom, Tokio..." [ngModel]="editLoc.name"
+            (ngModelChange)="editingLocation.set({...editLoc, name: $event})"
+            class="w-full px-2.5 py-1.5 bg-slate-50 border border-slate-300 rounded-lg text-slate-900 text-xs font-bold focus:ring-2 focus:ring-indigo-500 outline-none" />
+        </div>
+
+        <!-- GRADIENT ROTATION & TYPE -->
+        <div class="bg-slate-50 p-3 rounded-xl border border-slate-200/80 space-y-3">
+          <div class="flex items-center justify-between">
+            <label class="text-[11px] font-bold text-slate-700 uppercase tracking-wider">Rotation / Winkel</label>
+            <span class="font-mono text-xs font-bold text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded">{{ editLoc.angle
+              }}°</span>
+          </div>
+
+          <input type="range" min="0" max="360" step="5" [ngModel]="editLoc.angle"
+            (ngModelChange)="editingLocation.set({...editLoc, angle: +$event})"
+            class="w-full accent-indigo-600 cursor-pointer" />
+
+          <div class="flex items-center justify-between pt-1">
+            <label class="text-[11px] font-bold text-slate-700 uppercase tracking-wider">Rahmenfarbe</label>
+            <input type="color" [ngModel]="editLoc.borderColor"
+              (ngModelChange)="editingLocation.set({...editLoc, borderColor: $event})"
+              class="w-7 h-7 rounded border-0 cursor-pointer p-0 bg-transparent" />
+          </div>
+        </div>
+
+        <!-- GRADIENT STOPS EDITOR -->
+        <div class="space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="text-[10.5px] font-bold text-slate-600 uppercase tracking-wider">Farb-Stufen (Gradient
+              Steps)</span>
+            <button (click)="addGradientStop()"
+              class="text-xs font-bold text-indigo-600 hover:text-indigo-800 flex items-center gap-1">
+              <span>+</span> Stufe hinzufügen
+            </button>
+          </div>
+
+          <div class="space-y-2 bg-slate-50 p-3 rounded-xl border border-slate-200/80">
+            @for (stop of editLoc.stops; track $index; let idx = $index) {
+            <div class="flex items-center gap-2 bg-white p-2 rounded-lg border border-slate-200/80 shadow-2xs">
+
+              <!-- Color Picker -->
+              <input type="color" [ngModel]="stop.color" (ngModelChange)="updateEditingStopColor(idx, $event)"
+                class="w-7 h-7 rounded border-0 cursor-pointer p-0 shrink-0 bg-transparent" />
+
+              <!-- Color Code Text Field -->
+              <input type="text" [ngModel]="stop.color" (ngModelChange)="updateEditingStopColor(idx, $event)"
+                class="w-20 px-1.5 py-1 font-mono text-[11px] bg-slate-50 border border-slate-300 rounded text-slate-800" />
+
+              <!-- Offset Slider -->
+              <div class="flex-1 flex items-center gap-1.5">
+                <input type="range" min="0" max="100" step="1" [ngModel]="stop.offset"
+                  (ngModelChange)="updateEditingStopOffset(idx, $event)"
+                  class="w-full accent-indigo-600 cursor-pointer" />
+                <span class="text-[10px] font-mono font-bold text-slate-500 w-8 text-right">{{ stop.offset }}%</span>
+              </div>
+
+              <!-- Delete Stop -->
+              @if (editLoc.stops.length > 2) {
+              <button (click)="removeGradientStop(idx)" title="Stufe entfernen"
+                class="text-slate-400 hover:text-rose-600 p-1">
+                ✕
+              </button>
+              }
+            </div>
+            }
+          </div>
+        </div>
+
+      </div>
+
+      <!-- FOOTER -->
+      <div class="px-5 py-3 border-t border-slate-100 flex items-center justify-between shrink-0 bg-slate-50/50">
+        <button (click)="closeLocationEditor()"
+          class="px-3.5 py-1.5 text-xs font-bold text-slate-600 hover:bg-slate-200/60 rounded-xl transition-all">
+          Zurück zur Liste
+        </button>
+        <button (click)="saveLocationPreset()"
+          class="px-4 py-1.5 text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl shadow-2xs transition-all flex items-center gap-1">
+          <span>✓</span> Speichern & Übernehmen
+        </button>
+      </div>
+      }
+
     </div>
+  </div>
   }
 
 </div>

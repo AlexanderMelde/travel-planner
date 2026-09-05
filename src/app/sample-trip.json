@@ -77,24 +77,26 @@
       "slots": {
         "morning": [
           {
+            "id": "a97ddfd8-2fca-49d4-ad3e-b11bfe509e7d",
             "title": "Anreise Karlsruhe -> Paris",
-            "cost": 100,
-            "currency": "EUR",
             "subtitle": "TGV / ICE nach Gare de l'Est",
             "images": [
-              "https://upload.wikimedia.org/wikipedia/commons/9/9c/Eurostar_e320_4033_Gare_du_Nord.jpg"
-            ]
+              "https://upload.wikimedia.org/wikipedia/commons/7/78/Tgv_ice.jpg"
+            ],
+            "cost": 100,
+            "currency": "EUR"
           }
         ],
         "noon": [
           {
+            "id": "29e43de2-fea1-4685-b3b8-b24068ea96f2",
             "title": "Check-In Hotel Paris",
-            "cost": 240,
-            "currency": "EUR",
-            "subtitle": "citizenM Paris Gare de Lyon (2 Nächte)",
+            "subtitle": "z.B. citizenM Paris Gare de Lyon (2 Nächte)",
             "images": [
-              "https://upload.wikimedia.org/wikipedia/commons/0/0b/CitizenM_Paris_Gare_de_Lyon_en_mai_2022.jpg"
-            ]
+              "https://media-cdn.holidaycheck.com/image/fetch/w_2880,h_1620,c_fit,q_auto,f_auto/https%3A%2F%2Fi.travelapi.com%2Flodging%2F18000000%2F17720000%2F17710500%2F17710418%2Fd911741d.jpg"
+            ],
+            "cost": 240,
+            "currency": "EUR"
           }
         ],
         "afternoon": [
@@ -117,13 +119,15 @@
         ],
         "evening": [
           {
-            "title": "Khayma Rooftop Bar",
-            "cost": 15,
-            "currency": "EUR",
-            "subtitle": "Apero mit Blick auf Sacré-Cœur",
+            "id": "aa4772cc-95ea-4808-8e68-5076bacfeda4",
+            "title": "Apero / Rooftop Bar",
+            "subtitle": "z.B. mit Blick auf Sacré-Cœur",
+            "description": "Khayma",
             "images": [
               "https://upload.wikimedia.org/wikipedia/commons/b/b9/View_of_Paris_from_the_Sacr%C3%A9-C%C5%93ur_Basilica_%28Panorama%29_%2822459040582%29.jpg"
-            ]
+            ],
+            "cost": 15,
+            "currency": "EUR"
           }
         ]
       }
@@ -133,34 +137,44 @@
       "slots": {
         "morning": [
           {
+            "id": "02b39c71-97a1-4e77-98b6-78e0f338bc76",
             "title": "Sightseeing & Louvre",
+            "subtitle": "Spaziergang an der Seine",
             "images": [
+              "https://upload.wikimedia.org/wikipedia/commons/1/15/La_Pyramide_du_Louvre.JPG",
               "https://upload.wikimedia.org/wikipedia/commons/5/52/View_of_the_Louvre_Palace_from_inside_of_the_Louvre_Pyramid_%2831398171506%29.jpg"
             ],
-            "subtitle": "Spaziergang an der Seine"
+            "currency": "EUR"
           }
         ],
         "noon": [],
         "afternoon": [
           {
-            "title": "Retro Gaming: Les Halles",
-            "cost": 25,
-            "currency": "EUR",
-            "images": [
-              "https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=600&auto=format&fit=crop"
+            "id": "124f09c2-72bf-46a8-bc76-3b5c6f23afee",
+            "title": "Retro Gaming: Reset Bar",
+            "subtitle": "In Les Halles",
+            "links": [
+              {
+                "url": "https://www.reset.bar/"
+              }
             ],
-            "subtitle": "Player One / Reset Bar"
+            "images": [
+              "https://custom-images.strikinglycdn.com/res/hrscywv4p/image/upload/c_limit,fl_lossy,h_9000,w_1920,f_auto,q_auto/1108516/reset-123_lmv5pn.jpg"
+            ],
+            "cost": 25,
+            "currency": "EUR"
           }
         ],
         "evening": [
           {
-            "title": "Burger im Marais",
-            "cost": 30,
-            "currency": "EUR",
-            "subtitle": "z.B. Blend oder PNY",
+            "id": "86bc3841-0faf-4358-af98-e024dfa086e0",
+            "title": "Burger essen",
+            "subtitle": "z.B. im Marais, PNY Paris New York oder Blend",
             "images": [
               "https://upload.wikimedia.org/wikipedia/commons/e/ed/Paris_rue_vieille_du_temple.jpg"
-            ]
+            ],
+            "cost": 30,
+            "currency": "EUR"
           }
         ]
       }
@@ -171,36 +185,40 @@
         "morning": [],
         "noon": [
           {
-            "title": "Transfer: Paris -> London",
-            "cost": 110,
-            "currency": "EUR",
+            "id": "c6862c00-fa7d-45aa-8a87-d8dc85e665f8",
+            "title": "Paris -> London",
             "subtitle": "Eurostar ab Gare du Nord",
+            "description": "Transfer",
             "images": [
-              "https://upload.wikimedia.org/wikipedia/commons/7/77/Eurostar_at_Paris_Gare_du_Nord.jpg"
-            ]
+              "https://upload.wikimedia.org/wikipedia/commons/9/9c/Eurostar_e320_4033_Gare_du_Nord.jpg"
+            ],
+            "cost": 110,
+            "currency": "EUR"
           }
         ],
         "afternoon": [
           {
+            "id": "9811b58c-b87b-479a-991b-d07a4ffadc96",
             "title": "Check-In Hotel London",
-            "cost": 724,
-            "currency": "EUR",
-            "subtitle": "hub by Premier Inn (6 Nächte)",
+            "subtitle": "zB hub by Premier Inn (6 Nächte)",
             "images": [
-              "https://upload.wikimedia.org/wikipedia/commons/1/15/La_Pyramide_du_Louvre.JPG"
-            ]
+              "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2b/68/fd/09/caption.jpg?w=700&h=-1&s=1"
+            ],
+            "cost": 724,
+            "currency": "EUR"
           }
         ],
         "evening": [
           {
+            "id": "a1cc6979-68e2-4050-9d6b-5ca18ac80e42",
             "title": "Borough Market",
+            "subtitle": "Streetfood unter Gleisen",
+            "description": "Donnerstag ist ein fantastischer Tag für diesen Markt. Holt euch frisches Streetfood und genießt den Vibe an der Themse.",
             "images": [
-              "https://upload.wikimedia.org/wikipedia/commons/e/ec/Borough_Market_interior_-_geograph.org.uk_-_1029742.jpg"
+              "https://boroughmarket.org.uk/wp-content/uploads/2021/03/Our-story.jpg"
             ],
             "cost": 25,
-            "currency": "GBP",
-            "subtitle": "Streetfood unter Gleisen",
-            "description": "Donnerstag ist ein fantastischer Tag für diesen Markt. Holt euch frisches Streetfood und genießt den Vibe an der Themse."
+            "currency": "GBP"
           }
         ]
       }
@@ -228,25 +246,33 @@
         ],
         "noon": [
           {
+            "id": "866057be-d97f-42c8-b615-144df8d0858e",
             "title": "Horizon 22 Ausblick",
+            "subtitle": "Gigantischer 360-Blick, gratis (Vorab buchen!)",
+            "description": "Die höchste kostenlose Aussichtsplattform in Europa. Atemberaubender Blick über die gesamte City of London. Vorab buchen!",
+            "links": [
+              {
+                "url": "https://horizon22.co.uk/"
+              }
+            ],
             "images": [
               "https://upload.wikimedia.org/wikipedia/commons/6/6e/Skyline_of_London_in_September_2024.jpg"
             ],
-            "subtitle": "Gigantischer 360-Blick, gratis (Vorab buchen!)",
-            "description": "Die höchste kostenlose Aussichtsplattform in Europa. Atemberaubender Blick über die gesamte City of London. Vorab buchen!"
+            "currency": "EUR"
           }
         ],
         "afternoon": [],
         "evening": [
           {
+            "id": "2f6414c1-93b7-4fae-95f0-10322bd07006",
             "title": "Flight Club",
-            "cost": 40,
-            "currency": "GBP",
+            "subtitle": "British pub meets Victorian fairground",
+            "description": "Competitive Socializing: Darts mit digitaler Auswertung, Burger und Pints in einer lebendigen Pub-Atmosphäre. Vorab buchen!",
             "images": [
-              "https://images.unsplash.com/photo-1599392238301-0e7b8e2ea3f3?q=80&w=600&auto=format&fit=crop"
+              "https://media.flightclubdarts.com/media/fc-what-is-flight-club-carousel-games-desktop-1400x788.webp?2026-04-22T15%3A08%3A36.211Z"
             ],
-            "subtitle": "Darts mit System & Pints",
-            "description": "Competitive Socializing: Darts mit digitaler Auswertung, Burger und Pints in einer lebendigen Pub-Atmosphäre. Vorab buchen!"
+            "cost": 40,
+            "currency": "GBP"
           }
         ]
       }
@@ -257,111 +283,68 @@
         "morning": [],
         "noon": [
           {
-            "title": "Harry Potter (Teil 1)",
-            "images": [
-              "https://upload.wikimedia.org/wikipedia/commons/3/3b/Palace_Theatre_-_London.jpg"
+            "id": "7325ab75-8f9a-4a52-b1b2-03eaa366206b",
+            "title": "Natural History Museum",
+            "subtitle": "Nebeneinander in South Kensington",
+            "description": "Open every day, 10:00–17:50, Free\nneeds to be booked in advance",
+            "links": [
+              {
+                "url": "https://www.nhm.ac.uk/"
+              }
             ],
-            "cost": 180,
-            "currency": "GBP",
-            "subtitle": "The Cursed Child im Palace Theatre",
-            "description": "Ein viktorianisches Theater im West End. Das epische Harry Potter-Stück wird in zwei Teilen aufgeführt – Teil 1 heute Nachmittag, Teil 2 am Abend."
-          }
-        ],
-        "afternoon": [
-          {
-            "title": "Burger in Soho",
-            "cost": 20,
-            "currency": "GBP",
-            "subtitle": "Patty & Bun oder Honest Burgers",
             "images": [
-              "https://upload.wikimedia.org/wikipedia/commons/3/32/Friday_night_in_Soho_of_London..jpg"
-            ]
-          }
-        ],
-        "evening": [
-          {
-            "title": "Harry Potter (Teil 2)",
-            "subtitle": "Finale des Stücks",
-            "images": [
-              "https://upload.wikimedia.org/wikipedia/commons/3/3b/Palace_Theatre_-_London.jpg"
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "location": "London",
-      "slots": {
-        "morning": [
-          {
-            "title": "Tate Modern",
-            "images": [
-              "https://upload.wikimedia.org/wikipedia/commons/d/d2/Tate_Modern_turbine_hall_%281%29.jpg"
+              "https://www.nhm.ac.uk/content/dam/nhm-www/home/2025-new-home-page-test/resized-fern-for-homepage-desktop.jpg.thumb.1920.1920.png"
             ],
-            "subtitle": "Kunst im alten Kraftwerk"
-          }
-        ],
-        "noon": [
+            "currency": "EUR"
+          },
           {
-            "title": "Camden Market / Hawley Wharf",
-            "cost": 15,
-            "currency": "GBP",
-            "images": [
-              "https://images.unsplash.com/photo-1531219572328-a0171b4448a3?q=80&w=600&auto=format&fit=crop"
+            "id": "0eee7090-f545-4c3e-921d-00612bb877b2",
+            "title": "Science Museum",
+            "subtitle": "Nebeneinander in South Kensington",
+            "description": "open daily from 10.00–18.00, free\nneeds to be booked in advance",
+            "links": [
+              {
+                "url": "https://www.sciencemuseum.org.uk"
+              }
             ],
-            "subtitle": "Streetfood am Kanal",
-            "description": "Neuerer Teil des Camden Markets mit großem Indoor Food-Court und Sitzplätzen direkt am Regent's Canal. Vibe zwischen Backsteinbögen und Wasser."
+            "images": [
+              "https://www.sciencemuseum.org.uk/sites/default/files/styles/11_7/public/2024-05/Science%20Museum%20%C2%A9%20Science%20Museum%20Group%20Resized.jpg?h=c10308cc&itok=gt00bZ25",
+              "https://upload.wikimedia.org/wikipedia/commons/e/e3/Science_Museum_London_Main_Hall.jpg"
+            ],
+            "currency": "EUR"
           }
         ],
         "afternoon": [],
         "evening": [
           {
-            "title": "Mercato Mayfair",
-            "images": [
-              "https://upload.wikimedia.org/wikipedia/commons/e/e0/Mercato_Mayfair_%281%29_-_2023-08-27.jpg"
+            "id": "a244919b-02c5-4403-980b-df642d5c17a3",
+            "title": "Burger in Soho",
+            "subtitle": "Patty & Bun oder Honest Burgers",
+            "links": [
+              {
+                "url": "https://www.honestburgers.co.uk/menus/",
+                "label": "Honest Burger"
+              },
+              {
+                "url": "https://www.pattyandbun.co.uk/menu",
+                "label": "Patty & Bun"
+              }
             ],
-            "cost": 30,
-            "currency": "GBP",
-            "subtitle": "Streetfood in einer alten Kirche",
-            "description": "Einer der schönsten Orte für Food in London. Alte Buntglasfenster, eine Orgel und dazwischen feinstes Essen und Trinken. In der Krypta gibt es eine Weinbar."
-          }
-        ]
-      }
-    },
-    {
-      "location": "London",
-      "slots": {
-        "morning": [
-          {
-            "title": "Science & Natural History Museum",
-            "subtitle": "Nebeneinander in South Kensington (kostenlos)",
             "images": [
-              "https://upload.wikimedia.org/wikipedia/commons/e/e3/Science_Museum_London_Main_Hall.jpg"
-            ]
-          }
-        ],
-        "noon": [],
-        "afternoon": [
-          {
-            "title": "Banya No. 1",
-            "images": [
-              "https://upload.wikimedia.org/wikipedia/commons/b/bb/Typical_Russian_Banya.jpg"
+              "https://www.honestburgers.co.uk/wp-content/uploads/2014/03/HB_Soho_01.jpg"
             ],
-            "cost": 85,
-            "currency": "GBP",
-            "subtitle": "Authentisches russisches Spa",
-            "description": "Perfekt zum Entspannen. Man wird mit Eichenzweigen abgeschlagen (Parenie) und springt danach ins Eisbecken."
-          }
-        ],
-        "evening": [
+            "cost": 20,
+            "currency": "GBP"
+          },
           {
-            "title": "Hexmoor Fantasy Bar",
-            "cost": 40,
-            "currency": "GBP",
-            "subtitle": "Immersive Zauberer-Bar",
+            "id": "389431e0-55a2-45ce-ba13-604467eb4d22",
+            "title": "Pub",
+            "subtitle": "Pints & Pie auf den Urlaub",
             "images": [
               "https://upload.wikimedia.org/wikipedia/commons/4/45/The_George_Inn_interior.jpg"
-            ]
+            ],
+            "cost": 25,
+            "currency": "GBP"
           }
         ]
       }
@@ -371,17 +354,39 @@
       "slots": {
         "morning": [
           {
-            "title": "Novelty Automation",
-            "images": [
-              "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=600&auto=format&fit=crop"
+            "id": "15605fe2-37e1-410d-a065-4a099816836b",
+            "title": "Tate Modern",
+            "subtitle": "Kunst im alten Kraftwerk",
+            "description": "Kostenlos",
+            "links": [
+              {
+                "url": "https://www.tate.org.uk/visit/tate-modern"
+              }
             ],
-            "cost": 15,
-            "currency": "GBP",
-            "subtitle": "Satirische Arcade",
-            "description": "Skurrile, mechanische Arcade-Automaten vom Ingenieur Tim Hunkin. Schwarzer britischer Humor pur!"
+            "images": [
+              "https://upload.wikimedia.org/wikipedia/commons/d/d2/Tate_Modern_turbine_hall_%281%29.jpg"
+            ],
+            "currency": "EUR"
           }
         ],
-        "noon": [],
+        "noon": [
+          {
+            "id": "1b0dba10-e83d-4c5d-89c1-4a008a627c93",
+            "title": "Streetfood Hall",
+            "subtitle": "Camden Market / Hawley Wharf",
+            "description": "Neuerer Teil des Camden Markets mit großem Indoor Food-Court und Sitzplätzen direkt am Regent's Canal. Vibe zwischen Backsteinbögen und Wasser.",
+            "links": [
+              {
+                "url": "https://camdenmarket.com/journal/camden-market-hawley-wharf"
+              }
+            ],
+            "images": [
+              "https://images.unsplash.com/photo-1531219572328-a0171b4448a3?q=80&w=600&auto=format&fit=crop"
+            ],
+            "cost": 15,
+            "currency": "GBP"
+          }
+        ],
         "afternoon": [
           {
             "title": "Covent Garden & Shoreditch",
@@ -393,13 +398,20 @@
         ],
         "evening": [
           {
-            "title": "Abschluss-Pub",
-            "cost": 25,
-            "currency": "GBP",
-            "subtitle": "Pints & Pie auf den Urlaub",
+            "id": "2530f4ca-ad28-4f14-9c9e-e190eec91516",
+            "title": "Hexmoor Fantasy Bar",
+            "subtitle": "Immersive Zauberer-Cocktail-Bar Prison",
+            "description": "Immersive theatrical experience\nImprisonment in ‘Cells’ for the duration of your sentence\nThree magical cocktails\n\nTäglich. Fr/Sa teurer",
+            "links": [
+              {
+                "url": "https://hexmoor.co.uk/"
+              }
+            ],
             "images": [
-              "https://upload.wikimedia.org/wikipedia/commons/4/45/The_George_Inn_interior.jpg"
-            ]
+              "https://hexmoor.co.uk/wp-content/uploads/2026/05/full-width-option-3-1536x954.jpg"
+            ],
+            "cost": 110,
+            "currency": "GBP"
           }
         ]
       }
@@ -409,14 +421,85 @@
       "slots": {
         "morning": [
           {
+            "id": "a1af432c-83e5-4ba4-aa21-cf577105dfec",
             "title": "Warner Bros. Studio Tour",
+            "subtitle": "Die originalen Filmsets",
+            "description": "The Making of Harry Potter: Einblick in die originalen Filmsets, Requisiten und Spezialeffekte. \nVorab buchen!",
             "images": [
               "https://upload.wikimedia.org/wikipedia/commons/f/f7/Entrance_of_Warner_Bros._Studio_Tour_London_%282025%29.jpg"
             ],
-            "cost": 55,
-            "currency": "GBP",
-            "subtitle": "Die originalen Filmsets",
-            "description": "The Making of Harry Potter: Einblick in die originalen Filmsets, Requisiten und Spezialeffekte. Vorab buchen – extrem beliebt!"
+            "cost": 117,
+            "currency": "GBP"
+          }
+        ],
+        "noon": [],
+        "afternoon": [],
+        "evening": [
+          {
+            "id": "26c90b80-aad8-45e7-9f04-c9f6e32ea518",
+            "title": "Mercato Mayfair",
+            "subtitle": "Streetfood in einer alten Kirche",
+            "description": "Einer der schönsten Orte für Food in London. Alte Buntglasfenster, eine Orgel und dazwischen feinstes Essen und Trinken. In der Krypta gibt es eine Weinbar.",
+            "links": [
+              {
+                "url": "https://mercatometropolitano.com/locations/mayfair/"
+              }
+            ],
+            "images": [
+              "https://mercatometropolitano.com/wp-content/uploads/elementor/thumbs/Editedy2-1-rbttoko3uygp4dt3ejj47nysppx9g5tbc4srbqxlag.jpg"
+            ],
+            "cost": 30,
+            "currency": "GBP"
+          }
+        ]
+      }
+    },
+    {
+      "location": "London",
+      "slots": {
+        "morning": [],
+        "noon": [],
+        "afternoon": [],
+        "evening": [
+          {
+            "id": "8b2e5c1c-7d86-4aa7-a8f9-19876c2fda96",
+            "title": "Harry Potter Theaterstück",
+            "subtitle": "The Cursed Child im Palace Theatre",
+            "description": "Ein viktorianisches Theater im West End. Das epische Harry Potter-Stück.\n\nAuftritte Di-So, am WE teurer als unter der Woche.",
+            "links": [
+              {
+                "url": "https://www.harrypottertheplay.com/"
+              }
+            ],
+            "images": [
+              "https://palacetheatre.co.uk/wp-content/uploads/sites/11/2021/05/1920x1080-1240x698.jpg",
+              "https://upload.wikimedia.org/wikipedia/commons/3/3b/Palace_Theatre_-_London.jpg"
+            ],
+            "cost": 180,
+            "currency": "GBP"
+          }
+        ]
+      }
+    },
+    {
+      "location": "London",
+      "slots": {
+        "morning": [
+          {
+            "id": "b94386f2-e4c0-4984-ac58-1b00e728106b",
+            "title": "Novelty Automation",
+            "subtitle": "Satirische Arcade",
+            "description": "Skurrile, mechanische Arcade-Automaten vom Ingenieur Tim Hunkin. Schwarzer britischer Humor pur!",
+            "links": [
+              {
+                "url": "https://www.novelty-automation.com/"
+              }
+            ],
+            "images": [
+              "https://www.timhunkin.com/page_pictures/a225_fulfilment-poster.jpg"
+            ],
+            "cost": 10,
+            "currency": "GBP"
           }
         ],
         "noon": [],
