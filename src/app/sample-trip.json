@@ -214,6 +214,11 @@
             "title": "Borough Market",
             "subtitle": "Streetfood unter Gleisen",
             "description": "Donnerstag ist ein fantastischer Tag für diesen Markt. Holt euch frisches Streetfood und genießt den Vibe an der Themse.",
+            "links": [
+              {
+                "url": "https://boroughmarket.org.uk"
+              }
+            ],
             "images": [
               "https://boroughmarket.org.uk/wp-content/uploads/2021/03/Our-story.jpg"
             ],
