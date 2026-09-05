@@ -1,0 +1,390 @@
+{
+  "title": "Paris & London 2027 🚆",
+  "startDate": "2027-06-08",
+  "locations": [
+    {
+      "name": "Paris",
+      "gradientType": "linear",
+      "angle": 90,
+      "stops": [
+        {
+          "color": "rgba(37, 99, 235, 0.25)",
+          "offset": 0
+        },
+        {
+          "color": "rgba(255, 255, 255, 0.95)",
+          "offset": 50
+        },
+        {
+          "color": "rgba(220, 38, 38, 0.25)",
+          "offset": 100
+        }
+      ],
+      "borderColor": "rgba(37, 99, 235, 0.35)"
+    },
+    {
+      "name": "London",
+      "gradientType": "linear",
+      "angle": 135,
+      "stops": [
+        {
+          "color": "rgba(30, 58, 138, 0.3)",
+          "offset": 0
+        },
+        {
+          "color": "rgba(255, 255, 255, 0.9)",
+          "offset": 30
+        },
+        {
+          "color": "rgba(225, 29, 72, 0.35)",
+          "offset": 50
+        },
+        {
+          "color": "rgba(255, 255, 255, 0.9)",
+          "offset": 70
+        },
+        {
+          "color": "rgba(30, 58, 138, 0.3)",
+          "offset": 100
+        }
+      ],
+      "borderColor": "rgba(30, 58, 138, 0.35)"
+    },
+    {
+      "name": "Karlsruhe",
+      "gradientType": "linear",
+      "angle": 180,
+      "stops": [
+        {
+          "color": "rgba(15, 23, 42, 0.2)",
+          "offset": 0
+        },
+        {
+          "color": "rgba(220, 38, 38, 0.2)",
+          "offset": 50
+        },
+        {
+          "color": "rgba(245, 158, 11, 0.25)",
+          "offset": 100
+        }
+      ],
+      "borderColor": "rgba(245, 158, 11, 0.35)"
+    }
+  ],
+  "itinerary": [
+    {
+      "location": "Paris",
+      "slots": {
+        "morning": [
+          {
+            "title": "Anreise Karlsruhe -> Paris",
+            "cost": 100,
+            "currency": "EUR",
+            "subtitle": "TGV / ICE nach Gare de l'Est"
+          }
+        ],
+        "noon": [
+          {
+            "title": "Check-In Hotel Paris",
+            "cost": 240,
+            "currency": "EUR",
+            "subtitle": "citizenM Paris Gare de Lyon (2 Nächte)"
+          }
+        ],
+        "afternoon": [
+          {
+            "title": "Katakomben von Paris",
+            "images": [
+              "https://images.unsplash.com/photo-1548625361-ec853c03cc56?q=80&w=600&auto=format&fit=crop"
+            ],
+            "cost": 29,
+            "currency": "EUR",
+            "subtitle": "Knochen-Labyrinth",
+            "description": "Die dunklen, mystischen Tunnel voller Knochen unter Paris. Ein absolutes Must-See. Ihr müsst exakt 7 Tage vorher auf der Website buchen!",
+            "links": [
+              {
+                "url": "https://www.catacombes.paris.fr/en",
+                "label": "Tickets & Infos"
+              }
+            ]
+          }
+        ],
+        "evening": [
+          {
+            "title": "Khayma Rooftop Bar",
+            "cost": 15,
+            "currency": "EUR",
+            "subtitle": "Apero mit Blick auf Sacré-Cœur"
+          }
+        ]
+      }
+    },
+    {
+      "location": "Paris",
+      "slots": {
+        "morning": [
+          {
+            "title": "Sightseeing & Louvre",
+            "images": [
+              "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?q=80&w=600&auto=format&fit=crop"
+            ],
+            "subtitle": "Spaziergang an der Seine"
+          }
+        ],
+        "noon": [],
+        "afternoon": [
+          {
+            "title": "Retro Gaming: Les Halles",
+            "cost": 25,
+            "currency": "EUR",
+            "images": [
+              "https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=600&auto=format&fit=crop"
+            ],
+            "subtitle": "Player One / Reset Bar"
+          }
+        ],
+        "evening": [
+          {
+            "title": "Burger im Marais",
+            "cost": 30,
+            "currency": "EUR",
+            "subtitle": "z.B. Blend oder PNY"
+          }
+        ]
+      }
+    },
+    {
+      "location": "London",
+      "slots": {
+        "morning": [],
+        "noon": [
+          {
+            "title": "Transfer: Paris -> London",
+            "cost": 110,
+            "currency": "EUR",
+            "subtitle": "Eurostar ab Gare du Nord"
+          }
+        ],
+        "afternoon": [
+          {
+            "title": "Check-In Hotel London",
+            "cost": 724,
+            "currency": "EUR",
+            "subtitle": "hub by Premier Inn (6 Nächte)"
+          }
+        ],
+        "evening": [
+          {
+            "title": "Borough Market",
+            "images": [
+              "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=600&auto=format&fit=crop"
+            ],
+            "cost": 25,
+            "currency": "GBP",
+            "subtitle": "Streetfood unter Gleisen",
+            "description": "Donnerstag ist ein fantastischer Tag für diesen Markt. Holt euch frisches Streetfood und genießt den Vibe an der Themse."
+          }
+        ]
+      }
+    },
+    {
+      "location": "London",
+      "slots": {
+        "morning": [
+          {
+            "title": "Bridge Command",
+            "images": [
+              "https://images.unsplash.com/photo-1614729939124-032f0b56c9ce?q=80&w=600&auto=format&fit=crop"
+            ],
+            "cost": 45,
+            "currency": "GBP",
+            "subtitle": "Sci-Fi Raumschiff Simulation",
+            "description": "Immersive Raumschiff-Simulation in einer detaillierten physischen Umgebung. Man arbeitet als Team (Engineering, Navigation, etc.).",
+            "links": [
+              {
+                "url": "https://bridgecommand.space",
+                "label": "Tickets & Infos"
+              }
+            ]
+          }
+        ],
+        "noon": [
+          {
+            "title": "Horizon 22 Ausblick",
+            "subtitle": "Gigantischer 360-Blick, gratis (Vorab buchen!)"
+          }
+        ],
+        "afternoon": [],
+        "evening": [
+          {
+            "title": "Flight Club",
+            "cost": 40,
+            "currency": "GBP",
+            "images": [
+              "https://images.unsplash.com/photo-1588698744005-7287d373204e?q=80&w=600&auto=format&fit=crop"
+            ],
+            "subtitle": "Darts mit System & Pints"
+          }
+        ]
+      }
+    },
+    {
+      "location": "London",
+      "slots": {
+        "morning": [],
+        "noon": [
+          {
+            "title": "Harry Potter (Teil 1)",
+            "images": [
+              "https://images.unsplash.com/photo-1507676184212-d0330a15233c?q=80&w=600&auto=format&fit=crop"
+            ],
+            "cost": 180,
+            "currency": "GBP",
+            "subtitle": "The Cursed Child im Palace Theatre"
+          }
+        ],
+        "afternoon": [
+          {
+            "title": "Burger in Soho",
+            "cost": 20,
+            "currency": "GBP",
+            "subtitle": "Patty & Bun oder Honest Burgers"
+          }
+        ],
+        "evening": [
+          {
+            "title": "Harry Potter (Teil 2)",
+            "subtitle": "Finale des Stücks"
+          }
+        ]
+      }
+    },
+    {
+      "location": "London",
+      "slots": {
+        "morning": [
+          {
+            "title": "Tate Modern",
+            "images": [
+              "https://images.unsplash.com/photo-1579783901586-d88db74b4fe4?q=80&w=600&auto=format&fit=crop"
+            ],
+            "subtitle": "Kunst im alten Kraftwerk"
+          }
+        ],
+        "noon": [
+          {
+            "title": "Camden Market / Hawley Wharf",
+            "cost": 15,
+            "currency": "GBP",
+            "subtitle": "Streetfood am Kanal"
+          }
+        ],
+        "afternoon": [],
+        "evening": [
+          {
+            "title": "Mercato Mayfair",
+            "images": [
+              "https://images.unsplash.com/photo-1514933651103-005eec06c04b?q=80&w=600&auto=format&fit=crop"
+            ],
+            "cost": 30,
+            "currency": "GBP",
+            "subtitle": "Streetfood in einer alten Kirche",
+            "description": "Einer der schönsten Orte für Food in London. Alte Buntglasfenster, eine Orgel und dazwischen feinstes Essen und Trinken."
+          }
+        ]
+      }
+    },
+    {
+      "location": "London",
+      "slots": {
+        "morning": [
+          {
+            "title": "Science & Natural History Museum",
+            "subtitle": "Nebeneinander in South Kensington (kostenlos)"
+          }
+        ],
+        "noon": [],
+        "afternoon": [
+          {
+            "title": "Banya No. 1",
+            "images": [
+              "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=600&auto=format&fit=crop"
+            ],
+            "cost": 85,
+            "currency": "GBP",
+            "subtitle": "Authentisches russisches Spa",
+            "description": "Perfekt zum Entspannen. Man wird mit Eichenzweigen abgeschlagen (Parenie) und springt danach ins Eisbecken."
+          }
+        ],
+        "evening": [
+          {
+            "title": "Hexmoor Fantasy Bar",
+            "cost": 40,
+            "currency": "GBP",
+            "subtitle": "Immersive Zauberer-Bar"
+          }
+        ]
+      }
+    },
+    {
+      "location": "London",
+      "slots": {
+        "morning": [
+          {
+            "title": "Novelty Automation",
+            "images": [
+              "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=600&auto=format&fit=crop"
+            ],
+            "cost": 15,
+            "currency": "GBP",
+            "subtitle": "Satirische Arcade",
+            "description": "Skurrile, mechanische Arcade-Automaten vom Ingenieur Tim Hunkin. Schwarzer britischer Humor pur!"
+          }
+        ],
+        "noon": [],
+        "afternoon": [
+          {
+            "title": "Covent Garden & Shoreditch",
+            "subtitle": "Entspanntes Schlendern & Vintage"
+          }
+        ],
+        "evening": [
+          {
+            "title": "Abschluss-Pub",
+            "cost": 25,
+            "currency": "GBP",
+            "subtitle": "Pints & Pie auf den Urlaub"
+          }
+        ]
+      }
+    },
+    {
+      "location": "London",
+      "slots": {
+        "morning": [
+          {
+            "title": "Warner Bros. Studio Tour",
+            "images": [
+              "https://images.unsplash.com/photo-1618944847023-38aa001235f0?q=80&w=600&auto=format&fit=crop"
+            ],
+            "cost": 55,
+            "currency": "GBP",
+            "subtitle": "Die originalen Filmsets"
+          }
+        ],
+        "noon": [],
+        "afternoon": [
+          {
+            "title": "Heimreise via Zug",
+            "cost": 120,
+            "currency": "EUR",
+            "subtitle": "Eurostar & ICE nach Karlsruhe"
+          }
+        ],
+        "evening": []
+      }
+    }
+  ],
+  "icon": "✈️",
+  "iconBgColor": "#4f46e5"
+}
