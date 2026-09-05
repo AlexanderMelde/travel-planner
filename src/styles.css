@@ -70,3 +70,12 @@
 .animate-pop-in {
   animation: popIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
+
+/* Hides scrollbars for image strip carousels */
+.scrollbar-none {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}

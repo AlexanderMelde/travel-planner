@@ -428,11 +428,62 @@ export class App {
   }
 
   // --- MODAL CONTROLS ---
-  openViewModal(activity: Activity, dayIdx: number, slot: SlotType) {
+  readonly viewPopoverRect = signal<{top: number; left: number; width: number; height: number} | null>(null);
+
+  openViewModal(activity: Activity, dayIdx: number, slot: SlotType, event?: MouseEvent) {
+    if (event) {
+      const el = (event.currentTarget as HTMLElement);
+      const rect = el.getBoundingClientRect();
+      this.viewPopoverRect.set({ top: rect.top, left: rect.left, width: rect.width, height: rect.height });
+    } else {
+      this.viewPopoverRect.set(null);
+    }
     this.selectedActivity.set(activity);
     this.modalTargetDayIndex.set(dayIdx);
     this.modalTargetSlot.set(slot);
     this.modalMode.set('view');
+  }
+
+  /**
+   * Computes a viewport-aware CSS style object for the view popover card.
+   * Tries to open to the right of the clicked card; falls back to left if needed.
+   */
+  getPopoverStyle(rect: {top: number; left: number; width: number; height: number} | null): { [key: string]: string } {
+    const POPOVER_WIDTH = 420;
+    const MARGIN = 10;
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+
+    if (!rect) {
+      // Centred fallback if no anchor
+      return { top: '50%', left: '50%', transform: 'translate(-50%, -50%)' };
+    }
+
+    // Prefer opening to the right of the card
+    let left = rect.left + rect.width + MARGIN;
+    if (left + POPOVER_WIDTH > vw - MARGIN) {
+      // Not enough room on the right → open to the left
+      left = rect.left - POPOVER_WIDTH - MARGIN;
+    }
+    // Clamp to screen edges
+    left = Math.max(MARGIN, Math.min(left, vw - POPOVER_WIDTH - MARGIN));
+
+    // Vertically: align to card top, but clamp so it doesn't go off-screen
+    // Max height estimate ~ 520px
+    const MAX_H = 520;
+    let top = rect.top;
+    if (top + MAX_H > vh - MARGIN) {
+      top = vh - MAX_H - MARGIN;
+    }
+    top = Math.max(MARGIN, top);
+
+    return {
+      top: `${top}px`,
+      left: `${left}px`,
+      width: '420px',
+      'max-height': `${vh - top - MARGIN}px`,
+      'overflow-y': 'auto',
+    };
   }
 
   openEditModal(activity?: Activity, dayIdx?: number, slot?: SlotType) {

@@ -293,7 +293,7 @@
                     <div 
                       draggable="true"
                       (dragstart)="onDragStart($event, dayIdx, currentSlot, idx)"
-                      (click)="openViewModal(act, dayIdx, currentSlot)"
+                      (click)="openViewModal(act, dayIdx, currentSlot, $event)"
                       class="activity-card group bg-white rounded-lg border border-slate-200/90 shadow-2xs hover:shadow-md transition-all relative overflow-hidden flex flex-col justify-between p-2 cursor-pointer select-none">
                       
                       <!-- Right-aligned Background Image (if present) -->
@@ -484,8 +484,123 @@
 
   </main>
 
-  <!-- UNIFIED DIALOG / MODAL SYSTEM -->
-  @if (modalMode() !== 'closed') {
+  <!-- ===== VIEW POPOVER (no backdrop, anchored to card) ===== -->
+  @if (modalMode() === 'view' && selectedActivity(); as act) {
+    @let rect = viewPopoverRect();
+
+    <!-- Click-outside overlay (invisible, no darkening) -->
+    <div 
+      (click)="closeModal()"
+      class="fixed inset-0 z-40">
+    </div>
+
+    <!-- Popover Card -->
+    <div 
+      class="view-popover fixed z-50 bg-white rounded-2xl shadow-2xl border border-slate-200/80 overflow-hidden animate-pop-in"
+      [style]="getPopoverStyle(rect)">
+
+      <!-- HERO: Image gallery or colour gradient header -->
+      @if (act.images && act.images.length > 0) {
+        <!-- Swipeable / scrolling hero images -->
+        <div class="relative h-48 bg-slate-100 overflow-hidden">
+          @if (act.images.length === 1) {
+            <img [src]="act.images[0]" alt="" class="w-full h-full object-cover">
+          } @else {
+            <!-- Multi-image strip with CSS scroll -->
+            <div class="flex h-full overflow-x-auto snap-x snap-mandatory scrollbar-none">
+              @for (imgUrl of act.images; track imgUrl) {
+                <div class="shrink-0 w-full h-full snap-start">
+                  <img [src]="imgUrl" alt="" class="w-full h-full object-cover">
+                </div>
+              }
+            </div>
+            <!-- Image count pill -->
+            <div class="absolute bottom-2 right-3 bg-black/60 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
+              {{ act.images.length }} Fotos
+            </div>
+          }
+          <!-- Close button overlaid on hero -->
+          <button 
+            (click)="closeModal()"
+            class="absolute top-2.5 right-2.5 w-7 h-7 flex items-center justify-center bg-black/50 hover:bg-black/70 text-white rounded-full transition-all">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+      } @else {
+        <!-- Colour-strip header when no images -->
+        <div class="relative h-14 bg-gradient-to-r from-indigo-500 to-violet-600 flex items-end px-4 pb-0">
+          <button 
+            (click)="closeModal()"
+            class="absolute top-2.5 right-2.5 w-7 h-7 flex items-center justify-center bg-white/20 hover:bg-white/40 text-white rounded-full transition-all">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+      }
+
+      <!-- BODY -->
+      <div class="px-4 pt-3 pb-4 space-y-3">
+
+        <!-- Title & Subtitle -->
+        <div>
+          <h2 class="text-base font-extrabold text-slate-900 leading-snug">{{ act.title }}</h2>
+          @if (act.subtitle) {
+            <p class="text-xs text-slate-500 mt-0.5">{{ act.subtitle }}</p>
+          }
+        </div>
+
+        <!-- Cost Badge -->
+        @if (act.cost && act.cost > 0) {
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900 text-white font-bold text-xs">
+            <span>💰 {{ act.cost }} {{ act.currency || 'EUR' }}</span>
+            <span class="text-[10px] text-indigo-300 font-normal">({{ act.cost / 2 }} p.P.)</span>
+          </div>
+        }
+
+        <!-- Description prose -->
+        @if (act.description) {
+          <p class="text-xs text-slate-700 whitespace-pre-line leading-relaxed">{{ act.description }}</p>
+        }
+
+        <!-- Links -->
+        @let links = getActivityLinks(act);
+        @if (links.length > 0) {
+          <div class="flex flex-wrap gap-1.5">
+            @for (l of links; track l.url) {
+              <a 
+                [href]="l.url" 
+                target="_blank" 
+                rel="noopener"
+                (click)="$event.stopPropagation()"
+                class="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 hover:text-indigo-800 bg-indigo-50 hover:bg-indigo-100/80 px-3 py-1.5 rounded-lg transition-all border border-indigo-200/60">
+                <svg class="w-3 h-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                <span>{{ l.label || 'Website' }}</span>
+              </a>
+            }
+          </div>
+        }
+
+        <!-- Footer Actions -->
+        <div class="pt-2 border-t border-slate-100 flex items-center justify-between">
+          <button 
+            (click)="deleteActivity(act, modalTargetDayIndex(), modalTargetSlot())"
+            class="px-3 py-1.5 text-xs font-bold text-red-600 hover:bg-red-50 rounded-lg transition-all flex items-center gap-1">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+            Löschen
+          </button>
+
+          <button 
+            (click)="openEditModal()"
+            class="px-3.5 py-1.5 text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg transition-all flex items-center gap-1">
+            ✏️ Bearbeiten
+          </button>
+        </div>
+
+      </div>
+    </div>
+  }
+
+  <!-- ===== EDIT / CREATE MODAL (centered, with backdrop) ===== -->
+  @if (modalMode() === 'edit' || modalMode() === 'create') {
     <div class="fixed inset-0 z-50 overflow-y-auto animate-fade-in">
       
       <!-- Backdrop -->
@@ -501,7 +616,6 @@
           <!-- Modal Header -->
           <div class="px-5 py-3.5 bg-slate-50 border-b border-slate-200/80 flex items-center justify-between">
             <h3 class="text-sm font-bold text-slate-900 flex items-center gap-2">
-              @if (modalMode() === 'view') { 📌 Programmpunkt Details }
               @if (modalMode() === 'edit') { ✏️ Programmpunkt Bearbeiten }
               @if (modalMode() === 'create') { ➕ Neuer Programmpunkt }
             </h3>
@@ -513,251 +627,161 @@
             </button>
           </div>
 
-          <!-- MODAL BODY: VIEW MODE -->
-          @if (modalMode() === 'view' && selectedActivity(); as act) {
-            <div class="p-5 space-y-4">
-              
-              <!-- Title & Subtitle Header -->
-              <div>
-                <h2 class="text-lg font-extrabold text-slate-900 leading-tight">{{ act.title }}</h2>
-                @if (act.subtitle) {
-                  <p class="text-xs font-medium text-slate-500 mt-0.5">{{ act.subtitle }}</p>
-                }
-              </div>
-
-              <!-- Cost Badge -->
-              @if (act.cost && act.cost > 0) {
-                <div class="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-lg bg-slate-900 text-white font-bold text-xs">
-                  <span>💰 {{ act.cost }} {{ act.currency || 'EUR' }}</span>
-                  <span class="text-[10px] text-indigo-300 font-normal">({{ act.cost / 2 }} {{ act.currency || 'EUR' }} p.P.)</span>
-                </div>
-              }
-
-              <!-- Description -->
-              @if (act.description) {
-                <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200/80">
-                  <h4 class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Ausführliche Notizen</h4>
-                  <p class="text-xs text-slate-700 whitespace-pre-line leading-relaxed">{{ act.description }}</p>
-                </div>
-              }
-
-              <!-- Links (Multiple) -->
-              @let links = getActivityLinks(act);
-              @if (links.length > 0) {
-                <div>
-                  <h4 class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">Links & Webseiten</h4>
-                  <div class="flex flex-wrap gap-2">
-                    @for (l of links; track l.url) {
-                      <a 
-                        [href]="l.url" 
-                        target="_blank" 
-                        rel="noopener"
-                        class="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 hover:text-indigo-800 bg-indigo-50 hover:bg-indigo-100/80 px-3 py-1.5 rounded-lg transition-all border border-indigo-200/60">
-                        <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-                        <span>{{ l.label || 'Website' }}</span>
-                      </a>
-                    }
-                  </div>
-                </div>
-              }
-
-              <!-- Image Gallery Grid -->
-              @if (act.images && act.images.length > 0) {
-                <div>
-                  <h4 class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">Bildergalerie</h4>
-                  <div class="grid grid-cols-2 gap-2.5">
-                    @for (imgUrl of act.images; track imgUrl) {
-                      <div class="h-36 rounded-lg overflow-hidden bg-slate-100 border border-slate-200">
-                        <img [src]="imgUrl" alt="Activity Image" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
-                      </div>
-                    }
-                  </div>
-                </div>
-              }
-
-              <!-- View Footer Actions -->
-              <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
-                <button 
-                  (click)="deleteActivity(act, modalTargetDayIndex(), modalTargetSlot())"
-                  class="px-3 py-1.5 text-xs font-bold text-red-600 hover:bg-red-50 rounded-lg transition-all flex items-center gap-1">
-                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
-                  Programmpunkt Löschen
-                </button>
-
-                <div class="flex items-center gap-2">
-                  <button 
-                    (click)="openEditModal()"
-                    class="px-3.5 py-1.5 text-xs font-bold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 rounded-lg transition-all flex items-center gap-1">
-                    ✏️ Bearbeiten
-                  </button>
-                  <button 
-                    (click)="closeModal()"
-                    class="px-3.5 py-1.5 text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-lg transition-all">
-                    Schließen
-                  </button>
-                </div>
-              </div>
-
+          <!-- FORM -->
+          <form (ngSubmit)="saveModalActivity()" class="p-5 space-y-3.5">
+            
+            <!-- Title -->
+            <div>
+              <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-0.5">Titel *</label>
+              <input 
+                type="text" 
+                required
+                placeholder="z.B. Katakomben von Paris"
+                [ngModel]="editForm().title"
+                (ngModelChange)="editForm.set({...editForm(), title: $event})"
+                name="title"
+                class="w-full px-3 py-1.5 bg-slate-50 border border-slate-300 rounded-lg text-slate-900 font-semibold text-xs focus:ring-2 focus:ring-indigo-500 outline-none">
             </div>
-          }
 
-          <!-- MODAL BODY: EDIT / CREATE FORM -->
-          @if (modalMode() === 'edit' || modalMode() === 'create') {
-            <form (ngSubmit)="saveModalActivity()" class="p-5 space-y-3.5">
-              
-              <!-- Title -->
-              <div>
-                <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-0.5">Titel *</label>
-                <input 
-                  type="text" 
-                  required
-                  placeholder="z.B. Katakomben von Paris"
-                  [ngModel]="editForm().title"
-                  (ngModelChange)="editForm.set({...editForm(), title: $event})"
-                  name="title"
-                  class="w-full px-3 py-1.5 bg-slate-50 border border-slate-300 rounded-lg text-slate-900 font-semibold text-xs focus:ring-2 focus:ring-indigo-500 outline-none">
-              </div>
+            <!-- Subtitle / Short Description -->
+            <div>
+              <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-0.5">Kurzbeschreibung</label>
+              <input 
+                type="text" 
+                placeholder="z.B. Knochen-Labyrinth unter Paris"
+                [ngModel]="editForm().subtitle"
+                (ngModelChange)="editForm.set({...editForm(), subtitle: $event})"
+                name="subtitle"
+                class="w-full px-3 py-1.5 bg-slate-50 border border-slate-300 rounded-lg text-slate-900 text-xs focus:ring-2 focus:ring-indigo-500 outline-none">
+            </div>
 
-              <!-- Subtitle / Short Description -->
-              <div>
-                <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-0.5">Kurzbeschreibung</label>
-                <input 
-                  type="text" 
-                  placeholder="z.B. Knochen-Labyrinth unter Paris"
-                  [ngModel]="editForm().subtitle"
-                  (ngModelChange)="editForm.set({...editForm(), subtitle: $event})"
-                  name="subtitle"
-                  class="w-full px-3 py-1.5 bg-slate-50 border border-slate-300 rounded-lg text-slate-900 text-xs focus:ring-2 focus:ring-indigo-500 outline-none">
-              </div>
+            <!-- Description -->
+            <div>
+              <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-0.5">Ausführliche Notizen & Details</label>
+              <textarea 
+                rows="2.5"
+                placeholder="Details, Öffnungszeiten, Vorab-Buchung Hinweise..."
+                [ngModel]="editForm().description"
+                (ngModelChange)="editForm.set({...editForm(), description: $event})"
+                name="description"
+                class="w-full px-3 py-1.5 bg-slate-50 border border-slate-300 rounded-lg text-slate-900 text-xs focus:ring-2 focus:ring-indigo-500 outline-none"></textarea>
+            </div>
 
-              <!-- Description -->
-              <div>
-                <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-0.5">Ausführliche Notizen & Details</label>
-                <textarea 
-                  rows="2.5"
-                  placeholder="Details, Öffnungszeiten, Vorab-Buchung Hinweise..."
-                  [ngModel]="editForm().description"
-                  (ngModelChange)="editForm.set({...editForm(), description: $event})"
-                  name="description"
-                  class="w-full px-3 py-1.5 bg-slate-50 border border-slate-300 rounded-lg text-slate-900 text-xs focus:ring-2 focus:ring-indigo-500 outline-none"></textarea>
-              </div>
-
-              <!-- Links List Editor -->
-              <div>
-                <div class="flex items-center justify-between mb-1">
-                  <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider">Webseiten & Links</label>
-                  <button 
-                    type="button"
-                    (click)="addLinkFormRow()"
-                    class="text-[11px] font-bold text-indigo-600 hover:text-indigo-800 flex items-center gap-1">
-                    + Link hinzufügen
-                  </button>
-                </div>
-
-                @if (editForm().links.length === 0) {
-                  <p class="text-[11px] text-slate-400 italic">Keine Links. Klicke auf "+ Link hinzufügen".</p>
-                } @else {
-                  <div class="space-y-2">
-                    @for (linkItem of editForm().links; track $index; let linkIdx = $index) {
-                      <div class="flex items-center gap-2 bg-slate-50 p-2 rounded-lg border border-slate-200">
-                        <!-- URL Input -->
-                        <div class="flex-1">
-                          <input 
-                            type="url" 
-                            placeholder="https://..."
-                            [ngModel]="linkItem.url"
-                            (ngModelChange)="updateLinkFormRow(linkIdx, 'url', $event)"
-                            [name]="'link_url_' + linkIdx"
-                            class="w-full px-2 py-1 bg-white border border-slate-300 rounded text-slate-900 text-xs focus:ring-2 focus:ring-indigo-500 outline-none">
-                        </div>
-
-                        <!-- Custom Label Input (falls back to "Website") -->
-                        <div class="w-36">
-                          <input 
-                            type="text" 
-                            placeholder="Website"
-                            [ngModel]="linkItem.label"
-                            (ngModelChange)="updateLinkFormRow(linkIdx, 'label', $event)"
-                            [name]="'link_label_' + linkIdx"
-                            class="w-full px-2 py-1 bg-white border border-slate-300 rounded text-slate-900 text-xs focus:ring-2 focus:ring-indigo-500 outline-none">
-                        </div>
-
-                        <!-- Remove Link Button -->
-                        <button 
-                          type="button"
-                          (click)="removeLinkFormRow(linkIdx)"
-                          title="Link entfernen"
-                          class="p-1 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded transition-colors shrink-0">
-                          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-                        </button>
-                      </div>
-                    }
-                  </div>
-                }
-              </div>
-
-              <!-- Image URLs (one per line) -->
-              <div>
-                <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-0.5">Bild-URLs (1 URL pro Zeile)</label>
-                <textarea 
-                  rows="2"
-                  placeholder="https://images.unsplash.com/..."
-                  [ngModel]="editForm().imagesStr"
-                  (ngModelChange)="editForm.set({...editForm(), imagesStr: $event})"
-                  name="imagesStr"
-                  class="w-full px-3 py-1.5 bg-slate-50 border border-slate-300 rounded-lg text-slate-900 text-[11px] font-mono focus:ring-2 focus:ring-indigo-500 outline-none"></textarea>
-              </div>
-
-              <!-- COMPACT FINANCES ROW (Preis & Währung) -->
-              <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 space-y-1.5">
-                <label class="block text-[10.5px] font-bold text-slate-700 uppercase tracking-wider">Kosten (wird automatisch 50/50 geteilt)</label>
-                
-                <div class="flex items-center gap-2.5">
-                  <!-- Cost Amount -->
-                  <div class="flex-1">
-                    <span class="text-[10px] text-slate-500 block mb-0.5">Gesamtbetrag</span>
-                    <input 
-                      type="number" 
-                      step="0.5"
-                      placeholder="0.00"
-                      [ngModel]="editForm().cost"
-                      (ngModelChange)="editForm.set({...editForm(), cost: $event})"
-                      name="cost"
-                      class="w-full px-2.5 py-1 bg-white border border-slate-300 rounded-md text-slate-900 font-bold text-xs focus:ring-2 focus:ring-indigo-500 outline-none">
-                  </div>
-
-                  <!-- Currency Dropdown -->
-                  <div>
-                    <span class="text-[10px] text-slate-500 block mb-0.5">Währung</span>
-                    <select 
-                      [ngModel]="editForm().currency"
-                      (ngModelChange)="editForm.set({...editForm(), currency: $event})"
-                      name="currency"
-                      class="px-2.5 py-1 bg-white border border-slate-300 rounded-md text-slate-900 font-bold text-xs focus:ring-2 focus:ring-indigo-500 outline-none">
-                      <option value="EUR">EUR (€)</option>
-                      <option value="GBP">GBP (£)</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Form Action Buttons -->
-              <div class="pt-3 border-t border-slate-100 flex items-center justify-end gap-2">
+            <!-- Links List Editor -->
+            <div>
+              <div class="flex items-center justify-between mb-1">
+                <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider">Webseiten & Links</label>
                 <button 
                   type="button"
-                  (click)="closeModal()"
-                  class="px-3.5 py-1.5 text-xs font-bold text-slate-600 hover:bg-slate-100 rounded-lg transition-all">
-                  Abbrechen
-                </button>
-                <button 
-                  type="submit"
-                  class="px-4 py-1.5 text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg shadow-2xs transition-all">
-                  Speichern
+                  (click)="addLinkFormRow()"
+                  class="text-[11px] font-bold text-indigo-600 hover:text-indigo-800 flex items-center gap-1">
+                  + Link hinzufügen
                 </button>
               </div>
 
-            </form>
-          }
+              @if (editForm().links.length === 0) {
+                <p class="text-[11px] text-slate-400 italic">Keine Links. Klicke auf "+ Link hinzufügen".</p>
+              } @else {
+                <div class="space-y-2">
+                  @for (linkItem of editForm().links; track $index; let linkIdx = $index) {
+                    <div class="flex items-center gap-2 bg-slate-50 p-2 rounded-lg border border-slate-200">
+                      <!-- URL Input -->
+                      <div class="flex-1">
+                        <input 
+                          type="url" 
+                          placeholder="https://..."
+                          [ngModel]="linkItem.url"
+                          (ngModelChange)="updateLinkFormRow(linkIdx, 'url', $event)"
+                          [name]="'link_url_' + linkIdx"
+                          class="w-full px-2 py-1 bg-white border border-slate-300 rounded text-slate-900 text-xs focus:ring-2 focus:ring-indigo-500 outline-none">
+                      </div>
+
+                      <!-- Custom Label Input (falls back to "Website") -->
+                      <div class="w-36">
+                        <input 
+                          type="text" 
+                          placeholder="Website"
+                          [ngModel]="linkItem.label"
+                          (ngModelChange)="updateLinkFormRow(linkIdx, 'label', $event)"
+                          [name]="'link_label_' + linkIdx"
+                          class="w-full px-2 py-1 bg-white border border-slate-300 rounded text-slate-900 text-xs focus:ring-2 focus:ring-indigo-500 outline-none">
+                      </div>
+
+                      <!-- Remove Link Button -->
+                      <button 
+                        type="button"
+                        (click)="removeLinkFormRow(linkIdx)"
+                        title="Link entfernen"
+                        class="p-1 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded transition-colors shrink-0">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                      </button>
+                    </div>
+                  }
+                </div>
+              }
+            </div>
+
+            <!-- Image URLs (one per line) -->
+            <div>
+              <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-0.5">Bild-URLs (1 URL pro Zeile)</label>
+              <textarea 
+                rows="2"
+                placeholder="https://images.unsplash.com/..."
+                [ngModel]="editForm().imagesStr"
+                (ngModelChange)="editForm.set({...editForm(), imagesStr: $event})"
+                name="imagesStr"
+                class="w-full px-3 py-1.5 bg-slate-50 border border-slate-300 rounded-lg text-slate-900 text-[11px] font-mono focus:ring-2 focus:ring-indigo-500 outline-none"></textarea>
+            </div>
+
+            <!-- COMPACT FINANCES ROW (Preis & Währung) -->
+            <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 space-y-1.5">
+              <label class="block text-[10.5px] font-bold text-slate-700 uppercase tracking-wider">Kosten (wird automatisch 50/50 geteilt)</label>
+              
+              <div class="flex items-center gap-2.5">
+                <!-- Cost Amount -->
+                <div class="flex-1">
+                  <span class="text-[10px] text-slate-500 block mb-0.5">Gesamtbetrag</span>
+                  <input 
+                    type="number" 
+                    step="0.5"
+                    placeholder="0.00"
+                    [ngModel]="editForm().cost"
+                    (ngModelChange)="editForm.set({...editForm(), cost: $event})"
+                    name="cost"
+                    class="w-full px-2.5 py-1 bg-white border border-slate-300 rounded-md text-slate-900 font-bold text-xs focus:ring-2 focus:ring-indigo-500 outline-none">
+                </div>
+
+                <!-- Currency Dropdown -->
+                <div>
+                  <span class="text-[10px] text-slate-500 block mb-0.5">Währung</span>
+                  <select 
+                    [ngModel]="editForm().currency"
+                    (ngModelChange)="editForm.set({...editForm(), currency: $event})"
+                    name="currency"
+                    class="px-2.5 py-1 bg-white border border-slate-300 rounded-md text-slate-900 font-bold text-xs focus:ring-2 focus:ring-indigo-500 outline-none">
+                    <option value="EUR">EUR (€)</option>
+                    <option value="GBP">GBP (£)</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Form Action Buttons -->
+            <div class="pt-3 border-t border-slate-100 flex items-center justify-end gap-2">
+              <button 
+                type="button"
+                (click)="closeModal()"
+                class="px-3.5 py-1.5 text-xs font-bold text-slate-600 hover:bg-slate-100 rounded-lg transition-all">
+                Abbrechen
+              </button>
+              <button 
+                type="submit"
+                class="px-4 py-1.5 text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg shadow-2xs transition-all">
+                Speichern
+              </button>
+            </div>
+
+          </form>
 
         </div>
       </div>
