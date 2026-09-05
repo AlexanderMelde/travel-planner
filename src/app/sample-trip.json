@@ -80,7 +80,10 @@
             "title": "Anreise Karlsruhe -> Paris",
             "cost": 100,
             "currency": "EUR",
-            "subtitle": "TGV / ICE nach Gare de l'Est"
+            "subtitle": "TGV / ICE nach Gare de l'Est",
+            "images": [
+              "https://upload.wikimedia.org/wikipedia/commons/9/9c/Eurostar_e320_4033_Gare_du_Nord.jpg"
+            ]
           }
         ],
         "noon": [
@@ -88,14 +91,17 @@
             "title": "Check-In Hotel Paris",
             "cost": 240,
             "currency": "EUR",
-            "subtitle": "citizenM Paris Gare de Lyon (2 Nächte)"
+            "subtitle": "citizenM Paris Gare de Lyon (2 Nächte)",
+            "images": [
+              "https://upload.wikimedia.org/wikipedia/commons/0/0b/CitizenM_Paris_Gare_de_Lyon_en_mai_2022.jpg"
+            ]
           }
         ],
         "afternoon": [
           {
             "title": "Katakomben von Paris",
             "images": [
-              "https://images.unsplash.com/photo-1548625361-ec853c03cc56?q=80&w=600&auto=format&fit=crop"
+              "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Catacombs_of_Paris_01.jpg/1280px-Catacombs_of_Paris_01.jpg"
             ],
             "cost": 29,
             "currency": "EUR",
@@ -114,7 +120,10 @@
             "title": "Khayma Rooftop Bar",
             "cost": 15,
             "currency": "EUR",
-            "subtitle": "Apero mit Blick auf Sacré-Cœur"
+            "subtitle": "Apero mit Blick auf Sacré-Cœur",
+            "images": [
+              "https://upload.wikimedia.org/wikipedia/commons/b/b9/View_of_Paris_from_the_Sacr%C3%A9-C%C5%93ur_Basilica_%28Panorama%29_%2822459040582%29.jpg"
+            ]
           }
         ]
       }
@@ -126,7 +135,7 @@
           {
             "title": "Sightseeing & Louvre",
             "images": [
-              "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?q=80&w=600&auto=format&fit=crop"
+              "https://upload.wikimedia.org/wikipedia/commons/5/52/View_of_the_Louvre_Palace_from_inside_of_the_Louvre_Pyramid_%2831398171506%29.jpg"
             ],
             "subtitle": "Spaziergang an der Seine"
           }
@@ -148,7 +157,10 @@
             "title": "Burger im Marais",
             "cost": 30,
             "currency": "EUR",
-            "subtitle": "z.B. Blend oder PNY"
+            "subtitle": "z.B. Blend oder PNY",
+            "images": [
+              "https://upload.wikimedia.org/wikipedia/commons/e/ed/Paris_rue_vieille_du_temple.jpg"
+            ]
           }
         ]
       }
@@ -162,7 +174,10 @@
             "title": "Transfer: Paris -> London",
             "cost": 110,
             "currency": "EUR",
-            "subtitle": "Eurostar ab Gare du Nord"
+            "subtitle": "Eurostar ab Gare du Nord",
+            "images": [
+              "https://upload.wikimedia.org/wikipedia/commons/7/77/Eurostar_at_Paris_Gare_du_Nord.jpg"
+            ]
           }
         ],
         "afternoon": [
@@ -170,14 +185,17 @@
             "title": "Check-In Hotel London",
             "cost": 724,
             "currency": "EUR",
-            "subtitle": "hub by Premier Inn (6 Nächte)"
+            "subtitle": "hub by Premier Inn (6 Nächte)",
+            "images": [
+              "https://upload.wikimedia.org/wikipedia/commons/1/15/La_Pyramide_du_Louvre.JPG"
+            ]
           }
         ],
         "evening": [
           {
             "title": "Borough Market",
             "images": [
-              "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=600&auto=format&fit=crop"
+              "https://upload.wikimedia.org/wikipedia/commons/e/ec/Borough_Market_interior_-_geograph.org.uk_-_1029742.jpg"
             ],
             "cost": 25,
             "currency": "GBP",
@@ -211,7 +229,11 @@
         "noon": [
           {
             "title": "Horizon 22 Ausblick",
-            "subtitle": "Gigantischer 360-Blick, gratis (Vorab buchen!)"
+            "images": [
+              "https://upload.wikimedia.org/wikipedia/commons/6/6e/Skyline_of_London_in_September_2024.jpg"
+            ],
+            "subtitle": "Gigantischer 360-Blick, gratis (Vorab buchen!)",
+            "description": "Die höchste kostenlose Aussichtsplattform in Europa. Atemberaubender Blick über die gesamte City of London. Vorab buchen!"
           }
         ],
         "afternoon": [],
@@ -221,9 +243,10 @@
             "cost": 40,
             "currency": "GBP",
             "images": [
-              "https://images.unsplash.com/photo-1588698744005-7287d373204e?q=80&w=600&auto=format&fit=crop"
+              "https://images.unsplash.com/photo-1599392238301-0e7b8e2ea3f3?q=80&w=600&auto=format&fit=crop"
             ],
-            "subtitle": "Darts mit System & Pints"
+            "subtitle": "Darts mit System & Pints",
+            "description": "Competitive Socializing: Darts mit digitaler Auswertung, Burger und Pints in einer lebendigen Pub-Atmosphäre. Vorab buchen!"
           }
         ]
       }
@@ -236,11 +259,12 @@
           {
             "title": "Harry Potter (Teil 1)",
             "images": [
-              "https://images.unsplash.com/photo-1507676184212-d0330a15233c?q=80&w=600&auto=format&fit=crop"
+              "https://upload.wikimedia.org/wikipedia/commons/3/3b/Palace_Theatre_-_London.jpg"
             ],
             "cost": 180,
             "currency": "GBP",
-            "subtitle": "The Cursed Child im Palace Theatre"
+            "subtitle": "The Cursed Child im Palace Theatre",
+            "description": "Ein viktorianisches Theater im West End. Das epische Harry Potter-Stück wird in zwei Teilen aufgeführt – Teil 1 heute Nachmittag, Teil 2 am Abend."
           }
         ],
         "afternoon": [
@@ -248,13 +272,19 @@
             "title": "Burger in Soho",
             "cost": 20,
             "currency": "GBP",
-            "subtitle": "Patty & Bun oder Honest Burgers"
+            "subtitle": "Patty & Bun oder Honest Burgers",
+            "images": [
+              "https://upload.wikimedia.org/wikipedia/commons/3/32/Friday_night_in_Soho_of_London..jpg"
+            ]
           }
         ],
         "evening": [
           {
             "title": "Harry Potter (Teil 2)",
-            "subtitle": "Finale des Stücks"
+            "subtitle": "Finale des Stücks",
+            "images": [
+              "https://upload.wikimedia.org/wikipedia/commons/3/3b/Palace_Theatre_-_London.jpg"
+            ]
           }
         ]
       }
@@ -266,7 +296,7 @@
           {
             "title": "Tate Modern",
             "images": [
-              "https://images.unsplash.com/photo-1579783901586-d88db74b4fe4?q=80&w=600&auto=format&fit=crop"
+              "https://upload.wikimedia.org/wikipedia/commons/d/d2/Tate_Modern_turbine_hall_%281%29.jpg"
             ],
             "subtitle": "Kunst im alten Kraftwerk"
           }
@@ -276,7 +306,11 @@
             "title": "Camden Market / Hawley Wharf",
             "cost": 15,
             "currency": "GBP",
-            "subtitle": "Streetfood am Kanal"
+            "images": [
+              "https://images.unsplash.com/photo-1531219572328-a0171b4448a3?q=80&w=600&auto=format&fit=crop"
+            ],
+            "subtitle": "Streetfood am Kanal",
+            "description": "Neuerer Teil des Camden Markets mit großem Indoor Food-Court und Sitzplätzen direkt am Regent's Canal. Vibe zwischen Backsteinbögen und Wasser."
           }
         ],
         "afternoon": [],
@@ -284,12 +318,12 @@
           {
             "title": "Mercato Mayfair",
             "images": [
-              "https://images.unsplash.com/photo-1514933651103-005eec06c04b?q=80&w=600&auto=format&fit=crop"
+              "https://upload.wikimedia.org/wikipedia/commons/e/e0/Mercato_Mayfair_%281%29_-_2023-08-27.jpg"
             ],
             "cost": 30,
             "currency": "GBP",
             "subtitle": "Streetfood in einer alten Kirche",
-            "description": "Einer der schönsten Orte für Food in London. Alte Buntglasfenster, eine Orgel und dazwischen feinstes Essen und Trinken."
+            "description": "Einer der schönsten Orte für Food in London. Alte Buntglasfenster, eine Orgel und dazwischen feinstes Essen und Trinken. In der Krypta gibt es eine Weinbar."
           }
         ]
       }
@@ -300,7 +334,10 @@
         "morning": [
           {
             "title": "Science & Natural History Museum",
-            "subtitle": "Nebeneinander in South Kensington (kostenlos)"
+            "subtitle": "Nebeneinander in South Kensington (kostenlos)",
+            "images": [
+              "https://upload.wikimedia.org/wikipedia/commons/e/e3/Science_Museum_London_Main_Hall.jpg"
+            ]
           }
         ],
         "noon": [],
@@ -308,7 +345,7 @@
           {
             "title": "Banya No. 1",
             "images": [
-              "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=600&auto=format&fit=crop"
+              "https://upload.wikimedia.org/wikipedia/commons/b/bb/Typical_Russian_Banya.jpg"
             ],
             "cost": 85,
             "currency": "GBP",
@@ -321,7 +358,10 @@
             "title": "Hexmoor Fantasy Bar",
             "cost": 40,
             "currency": "GBP",
-            "subtitle": "Immersive Zauberer-Bar"
+            "subtitle": "Immersive Zauberer-Bar",
+            "images": [
+              "https://upload.wikimedia.org/wikipedia/commons/4/45/The_George_Inn_interior.jpg"
+            ]
           }
         ]
       }
@@ -345,7 +385,10 @@
         "afternoon": [
           {
             "title": "Covent Garden & Shoreditch",
-            "subtitle": "Entspanntes Schlendern & Vintage"
+            "subtitle": "Entspanntes Schlendern & Vintage",
+            "images": [
+              "https://upload.wikimedia.org/wikipedia/commons/0/05/London%2C_Covent_Garden_--_2016_--_4879.jpg"
+            ]
           }
         ],
         "evening": [
@@ -353,7 +396,10 @@
             "title": "Abschluss-Pub",
             "cost": 25,
             "currency": "GBP",
-            "subtitle": "Pints & Pie auf den Urlaub"
+            "subtitle": "Pints & Pie auf den Urlaub",
+            "images": [
+              "https://upload.wikimedia.org/wikipedia/commons/4/45/The_George_Inn_interior.jpg"
+            ]
           }
         ]
       }
@@ -365,11 +411,12 @@
           {
             "title": "Warner Bros. Studio Tour",
             "images": [
-              "https://images.unsplash.com/photo-1618944847023-38aa001235f0?q=80&w=600&auto=format&fit=crop"
+              "https://upload.wikimedia.org/wikipedia/commons/f/f7/Entrance_of_Warner_Bros._Studio_Tour_London_%282025%29.jpg"
             ],
             "cost": 55,
             "currency": "GBP",
-            "subtitle": "Die originalen Filmsets"
+            "subtitle": "Die originalen Filmsets",
+            "description": "The Making of Harry Potter: Einblick in die originalen Filmsets, Requisiten und Spezialeffekte. Vorab buchen – extrem beliebt!"
           }
         ],
         "noon": [],
@@ -378,7 +425,10 @@
             "title": "Heimreise via Zug",
             "cost": 120,
             "currency": "EUR",
-            "subtitle": "Eurostar & ICE nach Karlsruhe"
+            "subtitle": "Eurostar & ICE nach Karlsruhe",
+            "images": [
+              "https://upload.wikimedia.org/wikipedia/commons/2/2a/Eurostar_trainsets_at_Paris_Nord.jpg"
+            ]
           }
         ],
         "evening": []
