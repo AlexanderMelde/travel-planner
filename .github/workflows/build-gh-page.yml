@@ -32,8 +32,7 @@ jobs:
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Ensure this path points exactly to the folder containing your index.html
-          path: ./dist/ 
+          path: ./dist/travel-planner/browser/
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
